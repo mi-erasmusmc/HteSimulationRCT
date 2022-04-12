@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>3 Results | hte_simulation</title>
+<meta name="author" content="Alexandros Rekkas">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title=""></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="active" href="results.html"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="" href="discussion.html"><span class="header-section-number">4</span> Discussion</a></li>
+<li><a class="" href="supplement.html"><span class="header-section-number">5</span> Supplement</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">6</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="results" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Results<a class="anchor" aria-label="anchor" href="#results"><i class="fas fa-link"></i></a>
+</h1>
+<div id="simulations" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Simulations<a class="anchor" aria-label="anchor" href="#simulations"><i class="fas fa-link"></i></a>
+</h2>
+<p>The constant treatment effect approach outperformed other approaches in the base
+case scenario (N = 4,250; OR = 0.8; AUC= 0.75; no absolute treatment harm)
+with a true constant treatment effect (median RMSE: constant treatment effect
+0.009;
+linear interaction 0.014;
+RCS-3 0.018).
+The linear interaction model was optimal under true linear deviations
+(median RMSE: constant treatment effect
+0.027;
+linear interaction 0.015;
+RCS-3 0.018; Figure  panels A-C)
+and even in the presence of true quadratic deviations
+(median RMSE: constant treatment effect
+0.057;
+linear interaction 0.020;
+RCS-3 0.021; Figure  panels A-C)
+from a constant relative treatment effect. With non-monotonic deviations, RCS-3
+slightly outperformed the linear interaction model
+(Median RMSE: linear interaction 0.019;
+RCS-3 0.018; Figure  panel D).
+With strong treatment-related harms the results were very similar in most
+scenarios (Figure  panels A-C). Under non-monotonic deviations
+the optimal performance of RCS-3 was more pronounced
+(Median RMSE: linear interaction 0.024;
+RCS-3 0.019; Figure  panel D).
+A stronger average treatment effect (OR=0.5) led to larger absolute benefit
+predictions and consequently to larger RMSE for all approaches, but the relative
+differences between different approaches were similar to the base case scenario
+(Supplement, Figure S10).</p>
+<div class="figure">
+<span id="fig:rmsebase"></span>
+<img src="index_files/figure-html/rmsebase-1.png" alt="RMSE of the considered methods across 500 replications calculated from a simulated super-population of size 500,000. The scenario with true constant relative treatment effect (panel A) had a true prediction AUC of 0.75 and sample size of 4250. The RMSE is also presented for strong linear (panel B), strong quadratic (panel C), and non-monotonic (panel D) from constant relative treatment effects. Panels on the right side present the true relations between baseline risk (x-axis) and absolute treatment benefit (y-axis). The 2.5, 25, 50, 75, and 97.5 percentiles of the risk distribution are expressed by the boxplot on the top. The 2.5, 25, 50, 75, and 97.5 percentiles of the true benefit distributions are expressed by the boxplots on the side of the right-handside panel." width="100%"><p class="caption">
+Figure 3.1: RMSE of the considered methods across 500 replications calculated from a simulated super-population of size 500,000. The scenario with true constant relative treatment effect (panel A) had a true prediction AUC of 0.75 and sample size of 4250. The RMSE is also presented for strong linear (panel B), strong quadratic (panel C), and non-monotonic (panel D) from constant relative treatment effects. Panels on the right side present the true relations between baseline risk (x-axis) and absolute treatment benefit (y-axis). The 2.5, 25, 50, 75, and 97.5 percentiles of the risk distribution are expressed by the boxplot on the top. The 2.5, 25, 50, 75, and 97.5 percentiles of the true benefit distributions are expressed by the boxplots on the side of the right-handside panel.
+</p>
+</div>
+<p>The adaptive approach had limited loss of performance in terms of the median
+RMSE to the best-performing method in each scenario. However, compared to the
+best-performing approach, its RMSE was more variable in scenarios with linear
+and non-monotonic deviations, especially when also including moderate or strong
+treatment-related harms. On closer inspection, we found that this behavior was
+caused by selecting the constant treatment effect model in a substantial
+proportion of the replications (Supplement, Figure S3).</p>
+<p>Increasing the sample size to 17,000 favored RCS-3 the most. The difference in
+performance with the linear interaction approach was more limited in settings
+with a constant treatment effect
+(Median RMSE: linear interaction 0.007;
+RCS-3 0.009) and with a true linear interaction
+(Median RMSE: linear interaction 0.008;
+RCS-3 0.009).
+and more emphasized in settings with strong quadratic deviations
+(Median RMSE: linear interaction 0.013;
+RCS-3 0.011) and non-monotonic deviations
+(Median RMSE: linear interaction 0.014;
+RCS-3 0.010).
+Due to the large sample size, the RMSE of the adaptive approach was even more
+similar to the best-performing method, and the constant relative treatment
+effect model was less often wrongly selected (Supplement, Figure S4).</p>
+<div class="figure">
+<span id="fig:rmsesamplesize"></span>
+<img src="index_files/figure-html/rmsesamplesize-1.png" alt="RMSE of the considered methods across 500 replications calculated in simulated samples of size 17,000 rather than 4,250 in Figure \ref{fig:rmsebase}. RMSE was calculated on a super-population of size 500,000" width="100%"><p class="caption">
+Figure 3.2: RMSE of the considered methods across 500 replications calculated in simulated samples of size 17,000 rather than 4,250 in Figure . RMSE was calculated on a super-population of size 500,000
+</p>
+</div>
+<p>Similarly, when we increased the AUC of the true prediction model to 0.85 (OR =
+0.8 and N = 4,250), RCS-3 had the lowest RMSE in the case of strong quadratic or
+non-monotonic deviations and very comparable performance to the – optimal –
+linear interaction model in the case of strong linear deviations (median RMSE of
+0.016 for RCS-3 compared to
+0.014 for the linear interaction
+model). Similar to the base case scenario the adaptive approach wrongly selected
+the constant treatment effect model
+(23%
+and
+25%
+of the replications in the
+strong linear and non-monotonic deviation scenarios without treatment-related
+harms, respectively), leading to increased variability of the RMSE (Supplement,
+Figure S5).</p>
+<div class="figure">
+<span id="fig:rmseauc"></span>
+<img src="index_files/figure-html/rmseauc-1.png" alt="RMSE of the considered methods across 500 replications calculated in simulated samples 4,250. True prediction AUC of 0.85. RMSE was calculated on a super-population of size 500,000" width="100%"><p class="caption">
+Figure 3.3: RMSE of the considered methods across 500 replications calculated in simulated samples 4,250. True prediction AUC of 0.85. RMSE was calculated on a super-population of size 500,000
+</p>
+</div>
+<p>With a true constant relative treatment effect, discrimination for benefit was
+only slightly lower for the linear interaction model, but substantially lower
+for the non-linear RCS approaches (Figure ; panel
+A). With strong linear or quadratic deviations from a constant relative
+treatment effect, all methods discriminated quite similarly (Figure
+; panels B-C). With non-monotonic deviations, the
+constant effect model had much lower discriminative ability compared to all
+other methods
+(median AUC of 0.500 for the constant effects model,
+0.528
+for the linear interaction model and
+0.530
+Figure ; panel D).
+The adaptive approach was unstable in terms of discrimination for benefit,
+especially with treatment-related harms. With increasing number of RCS knots, we
+observed decreasing median values and increasing variability of the
+c-for-benefit in all scenarios. When we increased the sample size to 17,000 we
+observed similar trends, however the performance of all methods was more stable
+(Supplement, Figure S6). Finally, when we increased the true prediction AUC to
+0.85 the adaptive approach was, again, more conservative, especially with
+non-monotonic deviations and null or moderate treatment-related harms
+(Supplement, Figure S5).</p>
+<div class="figure">
+<span id="fig:discrimination"></span>
+<img src="index_files/figure-html/discrimination-1.png" alt="Discrimination for benefit of the considered methods across 500 replications calculated in a simulated samples of size 4,250. True prediction AUC of 0.75." width="100%"><p class="caption">
+Figure 3.4: Discrimination for benefit of the considered methods across 500 replications calculated in a simulated samples of size 4,250. True prediction AUC of 0.75.
+</p>
+</div>
+<p>In terms of calibration for benefit, the constant effects model outperformed all
+other models in the scenario with true constant treatment effects, but was
+miscalibrated for all deviation scenarios (Figure ). The
+linear interaction model showed best or close to best calibration across all
+scenarios and was only outperformed by RCS-3 in the case of non-monotonic
+deviations and treatment-related harms (Figure ; panel
+D). The adaptive approach was worse calibrated under strong linear and
+non-monotonic deviations compared to the linear interaction model and
+RCS-3. When we increased the sample size to 17,000 (Supplement, Figure S6) or
+the true prediction AUC to 0.85 (Supplement, Figure S7), RCS-3 was somewhat
+better calibrated than the linear interaction model with strong quadratic
+deviations.</p>
+<div class="figure">
+<span id="fig:calibration"></span>
+<img src="index_files/figure-html/calibration-1.png" alt="Calibration for benefit of the considered methods across 500 replications calculated in a simulated sample of size 500,000. True prediction AUC of 0.75 and sample size of 4,250." width="100%"><p class="caption">
+Figure 3.5: Calibration for benefit of the considered methods across 500 replications calculated in a simulated sample of size 500,000. True prediction AUC of 0.75 and sample size of 4,250.
+</p>
+</div>
+<p>The results from all individual scenarios can be explored online at
+<a href="https://arekkas.shinyapps.io/simulation_viewer/">https://arekkas.shinyapps.io/simulation_viewer/</a>. Additionally,
+all the code for the simulations can be found at
+<a href="https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021">https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021</a></p>
+</div>
+<div id="empirical-illustration-1" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Empirical illustration<a class="anchor" aria-label="anchor" href="#empirical-illustration-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>We used the derived prognostic index to fit a constant treatment effect, a
+linear interaction and an RCS-3 model individualizing absolute benefit
+predictions. Following our simulation results, RCS-4 and RCS-5 models were
+excluded. Finally, an adaptive approach with the 3 candidate models was applied.</p>
+<p>All considered methods provided similar fits, predicting increasing benefits for
+patients with higher baseline risk predictions, and followed the evolution of
+the stratified estimates closely (Figure ). The constant
+treatment effect model had somewhat lower AIC compared to the linear interaction
+model (AIC:
+9,336 versus
+9,342),
+equal cross-validated discrimination
+(c-for-benefit:
+0.525),
+and slightly better cross-validated calibration
+(ICI-for benefit:
+0.010 versus
+0.012).
+In conclusion, although the sample size (30,510 patients;
+2,128 events) allowed for flexible modeling approaches, a
+simpler constant treatment effect model is adequate for predicting absolute
+30-day mortality benefits of treatment with tPA in patients with acute MI.</p>
+<div class="figure">
+<span id="fig:gusto"></span>
+<img src="index_files/figure-html/gusto-1.png" alt="Individualized absolute benefit predictions based on baseline risk when using a constant treatment effect approach, a linear interaction approach and RCS smoothing using 3 knots. Risk stratified estimates of absolute benefit are presented within quartiles of baseline risk as reference." width="100%"><p class="caption">
+Figure 3.6: Individualized absolute benefit predictions based on baseline risk when using a constant treatment effect approach, a linear interaction approach and RCS smoothing using 3 knots. Risk stratified estimates of absolute benefit are presented within quartiles of baseline risk as reference.
+</p>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="methods.html"><span class="header-section-number">2</span> Methods</a></div>
+<div class="next"><a href="discussion.html"><span class="header-section-number">4</span> Discussion</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#results"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="nav-link" href="#simulations"><span class="header-section-number">3.1</span> Simulations</a></li>
+<li><a class="nav-link" href="#empirical-illustration-1"><span class="header-section-number">3.2</span> Empirical illustration</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

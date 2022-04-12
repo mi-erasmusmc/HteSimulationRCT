@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>9 Approaches to individualize benefit predictions | Supplementary material</title>
+<meta name="author" content="Alexandros Rekkas">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Supplementary material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="" href="results.html"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="" href="discussion.html"><span class="header-section-number">4</span> Discussion</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">5</span> References</a></li>
+<li><a class="" href="notation-1.html"><span class="header-section-number">6</span> Notation</a></li>
+<li><a class="" href="simulation-settings.html"><span class="header-section-number">7</span> Simulation settings</a></li>
+<li><a class="" href="plausible-scenario-settings.html"><span class="header-section-number">8</span> Plausible scenario settings</a></li>
+<li><a class="active" href="approaches-to-individualize-benefit-predictions.html"><span class="header-section-number">9</span> Approaches to individualize benefit predictions</a></li>
+<li><a class="" href="adaptive-model-selection-frequencies.html"><span class="header-section-number">10</span> Adaptive model selection frequencies</a></li>
+<li><a class="" href="discrimination-and-calibration-for-benefit.html"><span class="header-section-number">11</span> Discrimination and calibration for benefit</a></li>
+<li><a class="" href="strong-relative-treatment-effect.html"><span class="header-section-number">12</span> Strong relative treatment effect</a></li>
+<li><a class="" href="treatment-interactions.html"><span class="header-section-number">13</span> Treatment interactions</a></li>
+<li><a class="" href="empirical-illustration-2.html"><span class="header-section-number">14</span> Empirical illustration</a></li>
+<li><a class="" href="references-1.html"><span class="header-section-number">15</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="approaches-to-individualize-benefit-predictions" class="section level1" number="9">
+<h1>
+<span class="header-section-number">9</span> Approaches to individualize benefit predictions<a class="anchor" aria-label="anchor" href="#approaches-to-individualize-benefit-predictions"><i class="fas fa-link"></i></a>
+</h1>
+<div id="risk-modeling" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Risk modeling<a class="anchor" aria-label="anchor" href="#risk-modeling"><i class="fas fa-link"></i></a>
+</h2>
+<p>Merging treatment arms, we develop prediction models including a constant relative treatment effect:</p>
+<p><span class="math display" id="eq:risk">\[\begin{equation}
+P(Y=1\:\vert\:X=x,Z=z) = g(x^t\beta + \gamma z)
+\end{equation}\]</span>
+\tag{9.1}</p>
+<p>We derive baseline risk predictions for patients by setting <span class="math inline">\(Z=0\)</span> in
+<a href="approaches-to-individualize-benefit-predictions.html#eq:risk">(9.1)</a>. All methods for individualizing benefit predictions are 2-stage
+methods, that start by fitting a model for predicting baseline risk. The
+estimated linear predictor of this model is</p>
+<p><span class="math display">\[\begin{equation*}
+\hat{lp} = lp(x;\hat{\beta}) = x^t\hat{\beta}
+\end{equation*}\]</span></p>
+</div>
+<div id="risk-stratification" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Risk stratification<a class="anchor" aria-label="anchor" href="#risk-stratification"><i class="fas fa-link"></i></a>
+</h2>
+<p>Derive a prediction model using the same approach as above and divide the
+population in equally sized risk-based subgroups. Estimate subgroup-specific
+absolute benefit from the observed absolute differences. Subject-specific
+benefit predictions are made by attributing to individuals their corresponding
+subgroup-specific estimate.</p>
+</div>
+<div id="constant-treatment-effect" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Constant treatment effect<a class="anchor" aria-label="anchor" href="#constant-treatment-effect"><i class="fas fa-link"></i></a>
+</h2>
+<p>Assuming a constant relative treatment effect, fit the adjusted model in
+<a href="approaches-to-individualize-benefit-predictions.html#eq:risk">(9.1)</a>. Then, predict absolute benefit using</p>
+<p><span class="math display" id="eq:main">\[\begin{equation}
+\hat{\tau}(x;\hat{\beta},\hat{\gamma})=g(f(\hat{lp}, 0)) - g(f(\hat{lp},1)), 
+\tag{9.2}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(f(\hat{lp}, z) = \hat{lp}+\hat{\gamma}z\)</span>, with <span class="math inline">\(\hat{\gamma}\)</span> the
+estimated relative treatment effect (log odds ratio).</p>
+</div>
+<div id="linear-interaction" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Linear interaction<a class="anchor" aria-label="anchor" href="#linear-interaction"><i class="fas fa-link"></i></a>
+</h2>
+<p>We relax the assumption of a constant relative treatment effect in
+<a href="approaches-to-individualize-benefit-predictions.html#eq:main">(9.2)</a> by setting</p>
+<p><span class="math display">\[ f(\hat{lp}, z) = \gamma_0+\gamma_1z+\gamma_2\hat{lp}+\gamma_3z\hat{lp} \]</span></p>
+</div>
+<div id="restricted-cubic-splines" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Restricted cubic splines<a class="anchor" aria-label="anchor" href="#restricted-cubic-splines"><i class="fas fa-link"></i></a>
+</h2>
+<p>Finally, we drop the linearity assumption and predict absolute benefit using
+smoothing with restricted cubic splines with <span class="math inline">\(k=3, 4\)</span> and <span class="math inline">\(5\)</span> knots. More
+specifically, we set:</p>
+<p><span class="math display">\[ f(\hat{lp}, z) = \gamma_0 + \gamma_1z+zs(\hat{lp}) \]</span>
+where
+<span class="math display">\[s(x)=\alpha_0+\alpha_1h_1(x)+\alpha_2h_2(x)+\dots+\alpha_{k-1}h_{k-1}(x)\]</span>
+with <span class="math inline">\(h_1(x)=x\)</span> and for <span class="math inline">\(j=2,\dots,k-2\)</span>
+<span class="math display">\[h_{j+1}(x)= (x-t_j)^3-(x-t_{k-1})_+^3 \frac{t_k-t_j}{t_k-t_{k-1}}+(x-t_k)^3_+\frac{t_{k-1}-t_j}{t_k-t_{k-1}}\]</span>
+where
+<span class="math inline">\(t_1,\dots,t_k\)</span> are the selected knots <span class="citation">[<a href="references.html#ref-harrell2017regression" role="doc-biblioref">21</a>]</span>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="plausible-scenario-settings.html"><span class="header-section-number">8</span> Plausible scenario settings</a></div>
+<div class="next"><a href="adaptive-model-selection-frequencies.html"><span class="header-section-number">10</span> Adaptive model selection frequencies</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#approaches-to-individualize-benefit-predictions"><span class="header-section-number">9</span> Approaches to individualize benefit predictions</a></li>
+<li><a class="nav-link" href="#risk-modeling"><span class="header-section-number">9.1</span> Risk modeling</a></li>
+<li><a class="nav-link" href="#risk-stratification"><span class="header-section-number">9.2</span> Risk stratification</a></li>
+<li><a class="nav-link" href="#constant-treatment-effect"><span class="header-section-number">9.3</span> Constant treatment effect</a></li>
+<li><a class="nav-link" href="#linear-interaction"><span class="header-section-number">9.4</span> Linear interaction</a></li>
+<li><a class="nav-link" href="#restricted-cubic-splines"><span class="header-section-number">9.5</span> Restricted cubic splines</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Supplementary material</strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

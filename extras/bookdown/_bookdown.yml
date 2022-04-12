@@ -1,0 +1,13 @@
+book_filename: "hte_simulation"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
+rmd_subdir: yes
+language:
+  ui: 
+    chapter_name: ""
+rmd_files:
+  - "index.Rmd"
+  - "supplement.Rmd"
+  - "references.Rmd"
+

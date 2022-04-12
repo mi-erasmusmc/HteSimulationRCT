@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>7 Simulation settings | Supplementary material</title>
+<meta name="author" content="Alexandros Rekkas">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Supplementary material</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="" href="results.html"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="" href="discussion.html"><span class="header-section-number">4</span> Discussion</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">5</span> References</a></li>
+<li><a class="" href="notation-1.html"><span class="header-section-number">6</span> Notation</a></li>
+<li><a class="active" href="simulation-settings.html"><span class="header-section-number">7</span> Simulation settings</a></li>
+<li><a class="" href="plausible-scenario-settings.html"><span class="header-section-number">8</span> Plausible scenario settings</a></li>
+<li><a class="" href="approaches-to-individualize-benefit-predictions.html"><span class="header-section-number">9</span> Approaches to individualize benefit predictions</a></li>
+<li><a class="" href="adaptive-model-selection-frequencies.html"><span class="header-section-number">10</span> Adaptive model selection frequencies</a></li>
+<li><a class="" href="discrimination-and-calibration-for-benefit.html"><span class="header-section-number">11</span> Discrimination and calibration for benefit</a></li>
+<li><a class="" href="strong-relative-treatment-effect.html"><span class="header-section-number">12</span> Strong relative treatment effect</a></li>
+<li><a class="" href="treatment-interactions.html"><span class="header-section-number">13</span> Treatment interactions</a></li>
+<li><a class="" href="empirical-illustration-2.html"><span class="header-section-number">14</span> Empirical illustration</a></li>
+<li><a class="" href="references-1.html"><span class="header-section-number">15</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="simulation-settings" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Simulation settings<a class="anchor" aria-label="anchor" href="#simulation-settings"><i class="fas fa-link"></i></a>
+</h1>
+<p>For all patients we observe covariates <span class="math inline">\(X_1,\dots,X_8\)</span>, of which <span class="math inline">\(4\)</span> are
+continuous and <span class="math inline">\(4\)</span> are binary. More specifically,</p>
+<p><span class="math display">\[\begin{equation*}
+X_1,\dots,X_4 \sim N(0, 1)
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+X_5,\dots,X_8 \sim B(1, 0.2)
+\end{equation*}\]</span></p>
+<p>We first, generate the binary outcomes <span class="math inline">\(Y\)</span> for the untreated patients (<span class="math inline">\(Z=0\)</span>),
+based on</p>
+<p><span class="math display" id="eq:p0">\[\begin{equation} 
+P(Y=1\:\vert\:X=x, Z=0) = g(\beta_0 + \beta_1x_1+\dots+\beta_8x_8) = g(lp_0),
+\tag{7.1}
+\end{equation}\]</span></p>
+<p>where <span class="math display">\[g(x) = \frac{e^x}{1+e^x}\]</span></p>
+<p>For treated patients, outcomes are generated from:</p>
+<p><span class="math display" id="eq:p1">\[\begin{equation}
+P(Y = 1\:\vert\:X=x, Z=1) = g(lp_1)
+\tag{7.2}
+\end{equation}\]</span></p>
+<p>where <span class="math display">\[lp_1 = \gamma_2(lp_0-c)^2+\gamma_1(lp_0-c)+\gamma_0\]</span></p>
+<div id="base-case-scenario" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Base-case scenario<a class="anchor" aria-label="anchor" href="#base-case-scenario"><i class="fas fa-link"></i></a>
+</h2>
+<p>The base-case scenario assumes a constant odds ratio of <span class="math inline">\(0.8\)</span> in favor of
+treatment. The simulated datasets are of size <span class="math inline">\(n=4250\)</span>, where treatment is
+allocated at random using a 50/50 split (80% power for the detection of an
+unadjusted OR of 0.8, assuming an event rate of 20% in the untreated
+arm). Outcome incidence in the untreated population is set at <span class="math inline">\(20\%\)</span>. For the
+development of the prediction model we use the model defined in <a href="simulation-settings.html#eq:p0">(7.1)</a>
+including a constant treatment effect. When doing predictions, <span class="math inline">\(Z\)</span> is set to
+<span class="math inline">\(0\)</span>. The value of the true <span class="math inline">\(\beta\)</span> is such that the above prediction model
+has an AUC of <span class="math inline">\(0.75\)</span>.</p>
+<p>The previously defined targets are achieved when <span class="math inline">\(\beta=(-2.08, 0.49,\dots,0.49)^t\)</span>. For the derivations in the treatment arm we use
+<span class="math inline">\(\gamma=(\log(0.8), 1, 0)^t\)</span>.</p>
+</div>
+<div id="deviations-from-base-case" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Deviations from base-case<a class="anchor" aria-label="anchor" href="#deviations-from-base-case"><i class="fas fa-link"></i></a>
+</h2>
+<p>We deviate from the base-case scenario in two ways. First, we alter the overall
+target settings of sample size, overall treatment effect and prediction model
+AUC. In a second stage, we consider settings that violate the assumption of a
+constant relative treatment effect, using a model-based approach.</p>
+<p>For the first part, we consider:</p>
+<ul>
+<li>Sample size:
+<ul>
+<li><span class="math inline">\(n=1064\)</span></li>
+<li><span class="math inline">\(n=17000\)</span></li>
+</ul>
+</li>
+<li>Overall treatment effect:
+<ul>
+<li><span class="math inline">\(OR=0.5\)</span></li>
+<li><span class="math inline">\(OR=1\)</span></li>
+</ul>
+</li>
+<li>Prediction performance:
+<ul>
+<li><span class="math inline">\(AUC=0.65\)</span></li>
+<li><span class="math inline">\(AUC=0.85\)</span></li>
+</ul>
+</li>
+</ul>
+<p>We set the true risk model coefficients to be
+<span class="math inline">\(\bm{\beta} = \big(-1.63,0.26,\dots,0.26\big)^t\)</span> for <span class="math inline">\(AUC=0.65\)</span> and <span class="math inline">\(\bm{\beta} = \big(-2.7,0.82,\dots,0.82\big)^t\)</span>
+for <span class="math inline">\(AUC=0.85\)</span>. In both cases, <span class="math inline">\(\beta_0\)</span> is selected so that an event rate of
+<span class="math inline">\(20\%\)</span> is maintained in the control arm.</p>
+<p>For the second part linear, quadratic and non-monotonic deviations from the
+assumption of constant relative effect are considered. We also consider
+different intensity levels of these deviations. Finally, constant absolute
+treatment-related harms are introduced, i.e. positive
+(<span class="math inline">\(0.25\times\text{true average benefit}\)</span>),
+strong positive (<span class="math inline">\(0.50\times\text{true average benefit}\)</span>) and negative
+(<span class="math inline">\(-0.25\times\text{true average benefit}\)</span>; i.e. constant absolute
+treatment-related benefit). In case of true absent treatment effects,
+treatment-related harms are set to <span class="math inline">\(1\%, 2\%\)</span> and <span class="math inline">\(-1\%\)</span> for positive, strong
+positive and negative setting, respectively. The settings for these deviations
+are defined in Table <a href="#tab:tab1"><strong>??</strong></a>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="notation-1.html"><span class="header-section-number">6</span> Notation</a></div>
+<div class="next"><a href="plausible-scenario-settings.html"><span class="header-section-number">8</span> Plausible scenario settings</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simulation-settings"><span class="header-section-number">7</span> Simulation settings</a></li>
+<li><a class="nav-link" href="#base-case-scenario"><span class="header-section-number">7.1</span> Base-case scenario</a></li>
+<li><a class="nav-link" href="#deviations-from-base-case"><span class="header-section-number">7.2</span> Deviations from base-case</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Supplementary material</strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

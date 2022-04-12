@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 Discussion | hte_simulation</title>
+<meta name="author" content="Alexandros Rekkas">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title=""></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="" href="results.html"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="active" href="discussion.html"><span class="header-section-number">4</span> Discussion</a></li>
+<li><a class="" href="supplement.html"><span class="header-section-number">5</span> Supplement</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">6</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="discussion" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion"><i class="fas fa-link"></i></a>
+</h1>
+<p>The linear interaction and the RCS-3 models displayed very good performance
+under many of the considered simulation scenarios. The linear interaction model
+was optimal in cases with moderate sample sizes (4.250 patients; ~785 events)
+and moderately performing baseline risk prediction models, that is, it had lower
+RMSE, was better calibrated for benefit and had better discrimination for
+benefit, even in scenarios with strong quadratic deviations. In scenarios with
+true non-monotonic deviations, the linear interaction model was outperformed by
+RCS-3, especially in the presence of treatment-related harms. Increasing the
+sample size or the prediction model’s discriminative ability favored RCS-3,
+especially in scenarios with strong non-linear deviations from a constant
+treatment effect.</p>
+<p>Our simulation results clearly express the trade-off between the advantages of
+flexibly modeling the relationship between baseline risk and treatment effect
+and the disadvantages of overfitting this relationship to the sample at hand. With
+infinite sample size, the more flexible approach (here RCS) will be optimal, but
+in practice, with limited sample size, parsimonious models may be
+preferable. Even with the substantial sample size of our base case scenario, the
+(less flexible) linear interaction model performed better than the (more
+flexible) RCS approach for most simulation settings. The even less flexible
+constant treatment effect model, however, was only optimal when the treatment
+effect was truly constant. Moreover, the assumption of a constant treatment
+effect may often be too strong <span class="citation">[<a href="references.html#ref-Kent2016" role="doc-biblioref">7</a>,<a href="references.html#ref-Rothwell1995" role="doc-biblioref">14</a>]</span>. For example, infants
+at lower risk of bronchopulmonary dysplasia benefit relatively more from vitamin
+A therapy than infants at higher risk <span class="citation">[<a href="references.html#ref-Rysavy2021" role="doc-biblioref">15</a>]</span>; higher risk prediabetic
+patients benefit relatively more from metformin than lower risk patients
+<span class="citation">[<a href="references.html#ref-Sussman2015" role="doc-biblioref">16</a>]</span>. Hence, a linear interaction between baseline risk and the effect
+of treatment may be the most sensible approach with moderate sample sizes.</p>
+<p>RCS-4 and RCS-5 were too flexible in all considered scenarios, as indicated by
+higher RMSE, increased variability of discrimination for benefit and worse
+calibration of benefit predictions. Even with larger sample sizes and strong
+quadratic or non-monotonic deviations, these more flexible methods did not
+outperform the simpler RCS-3 approach. Higher flexibility may only be helpful
+under more extreme patterns of HTE compared to the quadratic deviations
+considered here. Considering interactions in RCS-3 models as the most complex
+approach often may be reasonable.</p>
+<p>Increasing the discriminative ability of the risk model reduced RMSE for all
+methods. Higher discrimination translates in higher variability of predicted
+risks, which, in turn, allows the considered methods to better capture absolute
+treatment benefits. As a consequence, better risk discrimination also led to
+higher discrimination between those with low or high benefit (as reflected in
+values of c-for-benefit).</p>
+<p>The adaptive approach had adequate median performance, following the “true”
+model in most scenarios. With smaller sample sizes it tended to miss the
+treatment-baseline risk interaction and selected simpler models (Supplement
+Section 4). This conservative behavior resulted in increased RMSE variability in
+these scenarios, especially with true strong linear or non-monotonic
+deviations. Therefore, with smaller sample sizes the simpler linear interaction
+model may be a safer choice for predicting absolute benefits, especially in the
+presence of any suspected treatment-related harms.</p>
+<p>One limitation is that we assumed treatment benefit to be a function of baseline
+risk in the majority of the simulation scenarios. We attempted to expand our
+scenarios by considering constant moderate and strong treatment-related harms,
+applied on the absolute scale, in line with previous work <span class="citation">[<a href="references.html#ref-Glasziou1995" role="doc-biblioref">17</a>]</span>. In a
+limited set of scenarios with true interactions between treatment assignment and
+covariates, our conclusions remained unchanged (Supplement, Section 7). Even
+though the average error rates increased for all the considered methods, due to
+the miss-specification of the outcome model, the linear interaction model had
+the lowest error rates. RCS-3 had very comparable performance. The constant
+treatment effect model was often biased, especially with moderate or strong
+treatment-related harms. Future simulation studies could explore the effect of
+more extensive deviations from risk-based treatment effects.</p>
+<p>We only focused on risk-based methods, using baseline risk as a reference in a
+two-stage approach to individualizing benefit predictions. However, there is a
+plethora of different methods, ranging from treatment effect modeling to
+tree-based approaches available in more recent literature <span class="citation">[<a href="references.html#ref-Athey2019" role="doc-biblioref">18</a>–<a href="references.html#ref-powers2018some" role="doc-biblioref">21</a>]</span>. Many of these methods rely on incorporating
+treatment-covariate interactions when predicting benefit. An important caveat of
+such approaches is their sensitivity to overfitting, which may exaggerate the
+magnitude of predicted benefits. In a wide range of simulation settings, a
+simpler risk modeling approach was consistently better calibrated for benefit
+compared to more complex treatment effect modelling approaches
+<span class="citation">[<a href="references.html#ref-vanKlaveren2019" role="doc-biblioref">5</a>]</span>. Similarly, when SYNTAX score II, a model developed for
+identifying patients with complex coronary artery disease that benefit more from
+percutaneous coronary intervention or from coronary artery bypass grafting was
+redeveloped using fewer treatment-covariate interactions had better external
+performance compared to its predecessor <span class="citation">[<a href="references.html#ref-farooq2013anatomical" role="doc-biblioref">22</a>,<a href="references.html#ref-takahashi2020redevelopment" role="doc-biblioref">23</a>]</span>. However, whether this remains the case in a range
+of empirical settings still needs to be explored.</p>
+<p>In conclusion, the linear interaction approach is a viable option with moderate
+sample sizes and/or moderately performing risk prediction models, assuming a
+non-constant relative treatment effect plausible. RCS-3 is a better option with
+more abundant sample size and when non-monotonic deviations from a constant
+relative treatment effect and/or substantial treatment-related harms are
+anticipated. Increasing the complexity of the RCS models by increasing the
+number of knots does not improve benefit prediction. Using AIC for model
+selection is attractive with larger sample size.</p>
+
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="results.html"><span class="header-section-number">3</span> Results</a></div>
+<div class="next"><a href="supplement.html"><span class="header-section-number">5</span> Supplement</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#discussion"><span class="header-section-number">4</span> Discussion</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

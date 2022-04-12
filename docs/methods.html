@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>2 Methods | hte_simulation</title>
+<meta name="author" content="Alexandros Rekkas">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title=""></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="active" href="methods.html"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="" href="results.html"><span class="header-section-number">3</span> Results</a></li>
+<li><a class="" href="discussion.html"><span class="header-section-number">4</span> Discussion</a></li>
+<li><a class="" href="supplement.html"><span class="header-section-number">5</span> Supplement</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">6</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="methods" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Methods<a class="anchor" aria-label="anchor" href="#methods"><i class="fas fa-link"></i></a>
+</h1>
+<div id="notation" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Notation<a class="anchor" aria-label="anchor" href="#notation"><i class="fas fa-link"></i></a>
+</h2>
+<p>We observe RCT data <span class="math inline">\((Z, X, Y)\)</span>, where for each patient <span class="math inline">\(Z_i= 0, 1\)</span> is the
+treatment status, <span class="math inline">\(Y_i = 0, 1\)</span> is the observed outcome and <span class="math inline">\(X_i\)</span> is a set of
+measured covariates. Let <span class="math inline">\(\{Y_i(z), z=0, 1\}\)</span> denote the unobservable potential
+outcomes. We observe <span class="math inline">\(Y_i = Z_iY_i(1) + (1 - Z_i)Y_i(0)\)</span>. We are interested in
+predicting the conditional average treatment effect (CATE),
+<span class="math display">\[\tau(x) = E\{Y(0) - Y(1)|X=x\}\]</span>
+Assuming that <span class="math inline">\((Z, X, Y)\)</span> is a random sample from the target population and that
+<span class="math inline">\(\big(Y(0), Y(1)\big)\perp \!\!\! \perp Z|X\)</span>, as we are in the RCT setting, we can predict
+CATE from
+<span class="math display">\[\begin{align*}
+\tau(x) &amp;= E\{Y(0)\:\vert\:X=x\}-E\{Y(1)\:\vert\:X=x\}\\
+&amp;=E\{Y\:\vert\:X=x, Z=0\}-E\{Y\:\vert\:X=x, Z=1\}
+\end{align*}\]</span></p>
+</div>
+<div id="simulation-scenarios" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Simulation scenarios<a class="anchor" aria-label="anchor" href="#simulation-scenarios"><i class="fas fa-link"></i></a>
+</h2>
+<p>We simulated a typical RCT, comparing equally-sized treatment and control arms
+in terms of a binary outcome. For each patient we generated 8 baseline
+covariates <span class="math inline">\(x_1,\dots,x_4\sim N(0, 1)\)</span> and <span class="math inline">\(x_5,\dots,x_8\sim B(1,0.2)\)</span>. Outcomes in the control arm were generated from Bernoulli variables
+with true probabilities following a logistic regression model including all
+baseline covariates, i.e.
+<span class="math inline">\(P(Y(0)=1\:\vert\:X=x) = \text{expit}(lp_0) = e^{lp_0}/(1+e^{lp_0})\)</span>,
+with <span class="math inline">\(lp_0=lp_0(x)=x^t\beta\)</span>.
+In the base scenarios coefficient values <span class="math inline">\(\beta\)</span> were
+such, that the AUC of the logistic regression model was 0.75 and the event rate
+in the control arm was <span class="math inline">\(20\%\)</span>.</p>
+<p>Outcomes in the treatment arm were first generated using 3 simple scenarios:
+absent (OR = 1), moderate (OR = 0.8) or strong (OR = 0.5) constant relative
+treatment effect. We then introduced linear, quadratic and non-monotonic
+deviations from constant treatment effects using:
+<span class="math display">\[lp_1 = \gamma_2(lp_0-c)^2 + \gamma_1(lp_0-c) + \gamma_0, \]</span>
+where <span class="math inline">\(lp_1\)</span> is the true linear predictor in the treatment arm, so that
+<span class="math inline">\(P(Y(1)=1\:\vert\:X=x) = \text{expit}(lp_1)\)</span>.
+Finally, we incorporated constant absolute harms for all treated patients, such
+that
+<span class="math inline">\(P(Y(1)=1|X=x) = \text{expit}(lp_1) + \text{harm}\)</span>.</p>
+<p>The sample size for the base scenarios was set to 4,250 (80% power for the
+detection of a marginal OR of 0.8 with the standard alpha of 5%). We evaluated
+the effect of smaller or larger sample sizes of 1,063 and 17,000,
+respectively. We also evaluated the effect of risk model discriminative ability,
+adjusting the baseline covariate coefficients, such that the AUC of the
+regression model in the control arm was 0.65 and 0.85, respectively.</p>
+<p>These settings resulted in a simulation study of 648 scenarios covering the
+observed HTE in 32 large trials as well as many other potential variations of
+risk-based treatment effect (Supplement, Sections 2 and 3) <span class="citation">[<a href="references.html#ref-Kent2016" role="doc-biblioref">7</a>]</span>.</p>
+</div>
+<div id="individualized-risk-based-benefit-predictions" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Individualized risk-based benefit predictions<a class="anchor" aria-label="anchor" href="#individualized-risk-based-benefit-predictions"><i class="fas fa-link"></i></a>
+</h2>
+<p>In each simulation run we internally developed a prediction model on the entire
+population, using a logistic regression with main effects for all baseline
+covariates and treatment assignment. Individual risk predictions were derived by
+setting treatment assignment to 0. Another approach would be to derive the
+prediction model solely on the control patients; however, it has been shown to
+lead to biased benefit predictions <span class="citation">[<a href="references.html#ref-vanKlaveren2019" role="doc-biblioref">5</a>,<a href="references.html#ref-Burke2014" role="doc-biblioref">8</a>,<a href="references.html#ref-Abadie2018" role="doc-biblioref">9</a>]</span>.</p>
+<p>A <em>stratified HTE method</em> has been suggested as an alternative to traditional
+subgroup analyses <span class="citation">[<a href="references.html#ref-Kent2019" role="doc-biblioref">3</a>,<a href="references.html#ref-PathEnE" role="doc-biblioref">4</a>]</span>. Patients are stratified into
+equally-sized risk strata—in this case based on risk quartiles. Absolute
+treatment effects within risk strata are estimated by the difference in event
+rate between control and treatment arm patients. We considered this approach as
+a reference, expecting it to perform worse than the other candidates, as its
+objective is to provide an illustration of HTE rather than to optimize
+individualized benefit predictions.</p>
+<p>Second, we considered a model which assumes <em>constant relative treatment effect</em>
+(constant odds ratio). Hence, absolute benefit is predicted from
+<span class="math inline">\(\tau(x;\hat{\beta}) = \text{expit}(\hat{lp}_0) - \text{expit}(\hat{lp}_0+\delta_0)\)</span>, where
+<span class="math inline">\(\delta_0\)</span> is the log of the assumed constant odds ratio and
+<span class="math inline">\(\hat{lp}_0 = \hat{lp}_0(x;\hat{\beta}) = x^t\hat{\beta}\)</span>
+the linear predictor of the estimated baseline risk model.</p>
+<p>Third, we considered a logistic regression model including treatment, the
+prognostic index, and their linear interaction. Absolute benefit is then
+estimated from
+<span class="math inline">\(\tau(x;\hat{\beta}) = \text{expit}(\delta_0+\delta_1\hat{lp}_0) - \text{expit}(\delta_0+\delta_2+(\delta_1+\delta_3)\hat{lp}_0)\)</span>
+We will refer to this method as the <em>linear interaction</em> approach.</p>
+<p>Fourth, we used <em>restricted cubic splines</em> (RCS) to relax the linearity
+assumption on the effect of the linear predictor <span class="citation">[<a href="references.html#ref-Harrell1988" role="doc-biblioref">10</a>]</span>. We considered
+splines with 3 (RCS-3), 4 (RCS-4) and 5 (RCS-5) knots to compare models with
+different levels of flexibility.</p>
+<p>Finally, we considered an adaptive approach using Akaike’s Information Criterion
+(AIC) for model selection. More specifically, we ranked the constant relative
+treatment effect model, the linear interaction model, and the RCS models with 3,
+4, and 5 knots based on their AIC and selected the one with the lowest
+value. The extra degrees of freedom were 1 (linear interaction), 2, 3 and 4 (RCS
+models) for these increasingly complex interactions with the treatment effect.</p>
+</div>
+<div id="evaluation-metrics" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Evaluation metrics<a class="anchor" aria-label="anchor" href="#evaluation-metrics"><i class="fas fa-link"></i></a>
+</h2>
+<p>We evaluated the predictive accuracy of the considered methods by the root mean
+squared error (RMSE):</p>
+<p><span class="math display">\[\text{RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^n\big(\tau(x_i) - \hat{\tau}(x_i)\big)^2}\]</span></p>
+<p>We compared the discriminative ability of the methods under study using
+c-for-benefit and the integrated calibration index (ICI) for
+benefit (Supplement, Section 6) <span class="citation">[<a href="references.html#ref-vanKlaveren2018" role="doc-biblioref">11</a>]</span>.</p>
+<p>For each scenario we performed 500 replications, within which all the considered
+models were fitted. We simulated a super-population of size 500,000 for each
+scenario within which we calculated RMSE and discrimination and calibration for
+benefit of all the models in each replication.</p>
+</div>
+<div id="empirical-illustration" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Empirical illustration<a class="anchor" aria-label="anchor" href="#empirical-illustration"><i class="fas fa-link"></i></a>
+</h2>
+<p>We demonstrated the different methods using 30,510 patients with acute
+myocardial infarction (MI) included in the GUSTO-I trial. 10,348 patients were randomized to tissue
+plasminogen activator (tPA) treatment and 20,162 were randomized to streptokinase. The outcome of interest
+was 30-day mortality (total of 2,128 events), recorded for all
+patients. In line with previous analyses <span class="citation">[<a href="references.html#ref-Califf1997" role="doc-biblioref">12</a>,<a href="references.html#ref-Steyerberg2000" role="doc-biblioref">13</a>]</span>, we
+fitted a logistic regression model with 6 baseline covariates, i.e. age, Killip
+class, systolic blood pressure, heart rate, an indicator of previous MI, and the
+location of MI, to predict 30-day mortality risk (Supplement, Section 8).</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Introduction</a></div>
+<div class="next"><a href="results.html"><span class="header-section-number">3</span> Results</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#methods"><span class="header-section-number">2</span> Methods</a></li>
+<li><a class="nav-link" href="#notation"><span class="header-section-number">2.1</span> Notation</a></li>
+<li><a class="nav-link" href="#simulation-scenarios"><span class="header-section-number">2.2</span> Simulation scenarios</a></li>
+<li><a class="nav-link" href="#individualized-risk-based-benefit-predictions"><span class="header-section-number">2.3</span> Individualized risk-based benefit predictions</a></li>
+<li><a class="nav-link" href="#evaluation-metrics"><span class="header-section-number">2.4</span> Evaluation metrics</a></li>
+<li><a class="nav-link" href="#empirical-illustration"><span class="header-section-number">2.5</span> Empirical illustration</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>
