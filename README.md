@@ -26,41 +26,39 @@ assignment should be considered to improve treatment effect predictions.
 
 ```
 project
-|- README                    # Project description (this document)
-|- LICENSE                   # License of this project
+|- README                 # Project description (this document)
+|- LICENSE                # License of this project
 |
-|- code/                     # Any code used for generating the results
-|                            # and manuscript
+|- code/                  # Any code used for generating the results
+|                         # and manuscript
 |
-|- data/                     # Raw and processed data
-| |- raw/                    # Simulation results and raw RCT data
-| |- processed/              # Evaluation metrics (published)
+|- data/                  # Raw and processed data
+| |- raw/                 # Simulation results and raw RCT data
+| +- processed/           # Evaluation metrics (published)
 |
-|- figures/                  # Any figures used in the manuscript
-|                            # not published
+|- figures/               # Any figures used in the manuscript
+|                         # not published
 |
 |- extras
-| |- bookdown/               # Project website source code
-| |- vignettes/              # Instructions on running the simulations
-| |- shiny/                  # Shiny application code
+| |- bookdown/            # Project website source code
+| |- vignettes/           # Instructions on running the simulations
+| |- shiny/               # Shiny application code
 | | |- html/
 | | |- global.R
 | | |- server.R
-| | |- ui.R
+| | +- ui.R
 |
-|- docs/                     # Website material
+|- docs/                  # Website material
 |
-|- submission/               # Source code of the manuscript
+|- submission/            # Source code of the manuscript
 | |- manuscript.rmd
-| |- manuscript.pdf
 | |- supplement.rmd
-| |- supplement.pdf
 | |- references.bib
-| |- jce.csl
+| +- jce.csl
 |
-|- renv/                     # Files required for setting up renv
-|- renv.lock                 # Lock file for freezing R-package versions
-|- Makefile                  # Recipes for creating all required project files
+|- renv/                  # Files required for setting up renv
+|- renv.lock              # Lock file for freezing R-package versions
++- Makefile               # Recipes for creating all required project files
 ```
 
 

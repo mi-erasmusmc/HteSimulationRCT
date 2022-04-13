@@ -230,7 +230,7 @@ include_graphics(
 Merging treatment arms, we develop prediction models including a constant relative treatment effect:
 
 \begin{equation}
-P(Y=1\given X=x,Z=z) = g(x^t\beta + \gamma z)
+P(Y=1\given X=x,Z=z) = g(x^t\beta + \delta_0 z)
 \end{equation}
 (\#eq:risk)
 
@@ -259,21 +259,21 @@ Assuming a constant relative treatment effect, fit the adjusted model in
 (\#eq:main)
 \end{equation}
 
-where $f(\hat{lp}, z) = \hat{lp}+\hat{\gamma}z$, with $\hat{\gamma}$ the
+where $f(\hat{lp}, z) = \hat{lp}+\hat{\delta}_0z$, with $\hat{\delta}_0$ the
 estimated relative treatment effect (log odds ratio).
 
 ## Linear interaction
 We relax the assumption of a constant relative treatment effect in
 \@ref(eq:main) by setting
 
-$$ f(\hat{lp}, z) = \gamma_0+\gamma_1z+\gamma_2\hat{lp}+\gamma_3z\hat{lp} $$
+$$ f(\hat{lp}, z) = \delta_0+\delta_1z+\delta_2\hat{lp}+\delta_3z\hat{lp} $$
 
 ## Restricted cubic splines
 Finally, we drop the linearity assumption and predict absolute benefit using
 smoothing with restricted cubic splines with $k=3, 4$ and $5$ knots. More
 specifically, we set:
 
-$$ f(\hat{lp}, z) = \gamma_0 + \gamma_1z+zs(\hat{lp}) $$
+$$ f(\hat{lp}, z) = \delta_0 + \delta_1z+zs(\hat{lp}) $$
 where
 $$s(x)=\alpha_0+\alpha_1h_1(x)+\alpha_2h_2(x)+\dots+\alpha_{k-1}h_{k-1}(x)$$
 with $h_1(x)=x$ and for $j=2,\dots,k-2$

@@ -1,23 +1,23 @@
 library(tidyverse)
 rmse <- readr::read_csv(
-  "data/rmse.csv",
+  "https://raw.githubusercontent.com/mi-erasmusmc/HteSimulationRCT/main/data/processed/rmse.csv",
   col_types = readr::cols(.default = "d")
 )
 discrimination <- readr::read_csv(
-  "data/discrimination.csv",
+  "https://raw.githubusercontent.com/mi-erasmusmc/HteSimulationRCT/main/data/processed/discrimination.csv",
   col_types = readr::cols(.default = "d")
 )
 calibration <- readr::read_csv(
-  "data/calibration.csv",
+  "https://raw.githubusercontent.com/mi-erasmusmc/HteSimulationRCT/main/data/processed/calibration.csv",
   col_types = readr::cols(.default = "d")
 )
 
 analysisIds1 <- readr::read_csv(
-  "data/analysisIds.csv"
+  "https://raw.githubusercontent.com/mi-erasmusmc/HteSimulationRCT/main/data/processed/analysisIds.csv"
 ) %>%
   select(scenario, base, type, harm, sampleSize, auc)
 
-analysisIds2 <- readr::read_csv("data/analysisIdsInteractions.csv") %>%
+analysisIds2 <- readr::read_csv("https://raw.githubusercontent.com/mi-erasmusmc/HteSimulationRCT/main/data/processed/analysisIdsInteractions.csv") %>%
   select(scenario, base, type, harm, sampleSize, auc)
 
 analysisIds <- bind_rows(analysisIds1, analysisIds2)
@@ -61,7 +61,7 @@ createPlot2 <- function(data) {
       xaxis = list(
           title = ""
       ),
-      plot_bgcolor = '#e1e9f5'
+      plot_bgcolor = '#edf0f5'
     )
 }
 
