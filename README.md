@@ -2,8 +2,8 @@
 
 ## Summary
 **Objective**: To compare different risk-based methods for optimal prediction
-of individualized treatment effects. **Study Design and Setting**: We simulated
-RCT data using diverse assumptions for the average treatment effect, a baseline
+of treatment effects. **Study Design and Setting**: We simulated RCT data
+using diverse assumptions for the average treatment effect, a baseline
 prognostic index of risk (PI), the shape of its interaction with treatment
 (none, linear, quadratic or non-monotonic), and the magnitude of
 treatment-related harms (none or constant independent of the PI). We predicted
@@ -11,50 +11,56 @@ absolute benefit using: models with a constant relative treatment effect;
 stratification in quarters of the PI; models including a linear interaction of
 treatment with the PI; models including an interaction of treatment with a
 restricted cubic spline (RCS) transformation of the PI; an adaptive approach
-using Akaike’s Information Criterion. We evaluated predictive performance using
-root mean squared error and measures of discrimination and calibration for
-benefit. **Results**: The linear-interaction model and the RCS-interaction
-displayed robust performance across many simulation scenarios. The RCS-model
-was optimal when quadratic or non-monotonic deviations from a constant
-treatment effect were stronger, and when sample size was larger. The adaptive
-approach required larger sample sizes. Illustrations in the GUSTO-I trial
-confirmed these findings. **Conclusion**: An interaction between baseline risk
-and treatment assignment should be considered to improve treatment effect
-predictions.
+using Akaike’s Information Criterion. We evaluated predictive performance
+using root mean squared error and measures of discrimination and calibration
+for benefit. **Results**: The linear-interaction model displayed optimal or
+close-to-optimal performance across many simulation scenarios with moderate
+sample size (N=4,250; ~800 events). The RCS-model was optimal for strong
+non-linear deviations from a constant treatment effect, particularly when
+sample size was larger (N=17,000). The adaptive approach also required larger
+sample sizes. These findings were illustrated in the GUSTO-I
+trial. **Conclusion**: An interaction between baseline risk and treatment
+assignment should be considered to improve treatment effect predictions.
 
 ## Overview
 
 ```
 project
-|- README
-|- LICENSE
+|- README                    # Project description (this document)
+|- LICENSE                   # License of this project
 |
-|- code/
+|- code/                     # Any code used for generating the results
+|                            # and manuscript
 |
-|- data/
-| |- raw/
-| |- processed/
+|- data/                     # Raw and processed data
+| |- raw/                    # Simulation results and raw RCT data
+| |- processed/              # Evaluation metrics (published)
 |
-|- figures/
+|- figures/                  # Any figures used in the manuscript
+|                            # not published
 |
 |- extras
-| |- vignettes/
-| |- shiny/
+| |- bookdown/               # Project website source code
+| |- vignettes/              # Instructions on running the simulations
+| |- shiny/                  # Shiny application code
 | | |- html/
 | | |- global.R
 | | |- server.R
 | | |- ui.R
 |
-|- submission/
+|- docs/                     # Website material
+|
+|- submission/               # Source code of the manuscript
 | |- manuscript.rmd
 | |- manuscript.pdf
 | |- supplement.rmd
 | |- supplement.pdf
 | |- references.bib
 | |- jce.csl
-
-|- renv.lock
-|- Makefile
+|
+|- renv/                     # Files required for setting up renv
+|- renv.lock                 # Lock file for freezing R-package versions
+|- Makefile                  # Recipes for creating all required project files
 ```
 
 
@@ -63,7 +69,6 @@ project
 To download the code of the simulation study and explore our results run:
 ```bash
 git clone https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021.git
-cd arekkas_HteSimulation_XXXX_2021
 ```
 
 You can also replicate the study by running:
