@@ -93,9 +93,9 @@ environment.
 
 The code for running the simulations is contained in 3 custom R-packages:
 
-- [SimulateHte](https://github.com/rekkasa/SimulateHte) generating the simulated
-  datasets.
+- [SimulateHte](https://github.com/rekkasa/SimulateHte) for generating the
+  simulated datasets.
 - [SmoothHte](https://github.com/rekkasa/SmoothHte) for fitting smooth
-  interactions of baseline risk with treatment assignement.
+  interactions of baseline risk with treatment assignment.
 - [SimulationEvaluationHte](https://github.com/rekkasa/SimulationEvaluationHte)
   for computing evaluation metrics for every simulation run.
