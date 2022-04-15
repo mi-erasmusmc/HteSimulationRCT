@@ -201,7 +201,7 @@ submission/manuscript.pdf : submission/manuscript.rmd\
 	figures/calibration_moderate_base.tiff\
 	figures/discrimination_moderate_base.tiff\
 	figures/gusto.tiff
-	R -e 'rmarkdown::render("submission/manuscript.rmd", output_format = "rticles::elsevier_article")'
+	R -e 'rmarkdown::render("submission/manuscript.rmd", output_format = "bookdown::pdf_document2")'
 
 submission/manuscript.docx : submission/manuscript.rmd\
 	submission/references.bib\

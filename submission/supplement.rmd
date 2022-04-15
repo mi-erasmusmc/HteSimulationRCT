@@ -86,7 +86,7 @@ We first, generate the binary outcomes $Y$ for the untreated patients ($Z=0$),
 based on
 
 \begin{equation} 
-P(Y=1\given X=x, Z=0) = g(\beta_0 + \beta_1x_1+\dots+\beta_8x_8) = g(lp_0),
+P(Y(0)=1\given X=x) = g(\beta_0 + \beta_1x_1+\dots+\beta_8x_8) = g(lp_0),
 (\#eq:p0)
 \end{equation}
 

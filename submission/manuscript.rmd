@@ -3,57 +3,16 @@ title: |
  Individualized treatment effect was predicted best by modeling 
  baseline risk in interaction with treatment assignment
 abstract: |
-  **Objective**: To compare different risk-based methods for optimal prediction
-  of treatment effects. **Study Design and Setting**: We simulated RCT data
-  using diverse assumptions for the average treatment effect, a baseline
-  prognostic index of risk (PI), the shape of its interaction with treatment
-  (none, linear, quadratic or non-monotonic), and the magnitude of
-  treatment-related harms (none or constant independent of the PI). We predicted
-  absolute benefit using: models with a constant relative treatment effect;
-  stratification in quarters of the PI; models including a linear interaction of
-  treatment with the PI; models including an interaction of treatment with a
-  restricted cubic spline (RCS) transformation of the PI; an adaptive approach
-  using Akaike’s Information Criterion. We evaluated predictive performance
-  using root mean squared error and measures of discrimination and calibration
-  for benefit. **Results**: The linear-interaction model displayed optimal or
-  close-to-optimal performance across many simulation scenarios with moderate
-  sample size (N=4,250; ~800 events). The RCS-model was optimal for strong
-  non-linear deviations from a constant treatment effect, particularly when
-  sample size was larger (N=17,000). The adaptive approach also required larger
-  sample sizes. These findings were illustrated in the GUSTO-I
-  trial. **Conclusion**: An interaction between baseline risk and treatment
-  assignment should be considered to improve treatment effect predictions.
 author:
-  - name: Alexandros Rekkas
-    affiliation: 1
-    correspondingauthor: true
-  - name: Peter R. Rijnbeek
-    affiliation: 1
-  - name: David M. Kent
-    affiliation: 2
-  - name: Ewout W. Steyerberg
-    affiliation: 3
-  - name: David van Klaveren
-    affiliation: 4
-address:
-  - code: 1
-    address: Department of Medical Informatics, Erasmus Medical Center, Rotterdam, The Netherlands
-  - code: 2
-    address: Predictive Analytics and Comparative Effectiveness Center, Institute for Clinical Research and Health Policy Studies, Tufts Medical Center, Boston, Massachusetts, USA
-  - code: 3
-    address: Department of Biomedical Data Sciences, Leiden University Medical Center, Leiden, The Netherlands
-  - code: 4
-    address: Department of Public Health, Erasmus Medical Center, Rotterdam, The Netherlands
+  - Alexandros Rekkas$^1$,
+  - Peter R. Rijnbeek$^1$,
+  - David M. Kent$^2$,
+  - Ewout W. Steyerberg$^3$,
+  - David van Klaveren$^4$
 numbersections: true
 linenumbers: false
-journal: arXiv.org
-keywords:
-  - treatment effect heterogeneity
-  - absolute benefit
-  - prediction models
-output: 
-  rticles::elsevier_article:
-    keep_tex: true
+output:
+  bookdown::pdf_document2: default
   bookdown::word_document2:
     reference_docx: reference.docx
 geometry: margin=1.0in
@@ -63,11 +22,12 @@ font-size: 11pt
 header-includes:
   - \renewcommand*\familydefault{\sfdefault}
   - \usepackage{setspace}
+  - \usepackage[left, pagewise]{lineno}
+  - \usepackage{caption}
   - \usepackage{amsmath}
   - \doublespacing
   - \usepackage{amssymb}
   - \usepackage{bm}
-  - \usepackage{caption}
   - \usepackage{booktabs}
   - \date{}
   - \newcommand\given[1][]{\:#1\vert\:}
@@ -77,7 +37,6 @@ editor_options:
 bibliography: references.bib
 csl: jce.csl
 ---
-
 
 ```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
@@ -112,8 +71,73 @@ knit_hooks$set(inline = inline_hook)
 set.seed(19910930)
 ```
 
+\thispagestyle{empty}
+\vspace{8mm}
+
+$^1$ Department of Medical Informatics, Erasmus Medical Center, Rotterdam, The Netherlands
+
+$^2$ Predictive Analytics and Comparative Effectiveness Center, Institute for Clinical Research and Health Policy Studies, Tufts Medical Center, Boston, Massachusetts, USA
+
+$^3$ Department of Biomedical Data Sciences, Leiden University Medical Center, Leiden, The Netherlands
+
+$^4$ Department of Public Health, Erasmus Medical Center, Rotterdam, The Netherlands
+
+
+\vspace{10mm}
+**Corresponding author**
+\singlespacing 
+Alexandros Rekkas, MSc
+
+Department of Medical Informatics
+
+Erasmus University Medical Center
+
+3000 CA Rotterdam, P.O. Box 2040
+
+Email: a.rekkas@erasmusmc.nl
+\onehalfspacing
+
+\vspace{10mm}
+**Funding**
+
+This work has been performed in the European Health Data and
+Evidence Network (EHDEN) project. This project has received funding from the
+Innovative Medicines Initiative 2 Joint Undertaking (JU) under grant agreement
+No 806968. The JU receives support from the European Union’s Horizon 2020
+research and innovation programme and EFPIA.
+
+\newpage
+\newpage
+
+# Abstract {-}
+**Objective**: To compare different risk-based methods for optimal prediction
+of treatment effects. **Study Design and Setting**: We simulated RCT data
+using diverse assumptions for the average treatment effect, a baseline
+prognostic index of risk (PI), the shape of its interaction with treatment
+(none, linear, quadratic or non-monotonic), and the magnitude of
+treatment-related harms (none or constant independent of the PI). We predicted
+absolute benefit using: models with a constant relative treatment effect;
+stratification in quarters of the PI; models including a linear interaction of
+treatment with the PI; models including an interaction of treatment with a
+restricted cubic spline (RCS) transformation of the PI; an adaptive approach
+using Akaike’s Information Criterion. We evaluated predictive performance
+using root mean squared error and measures of discrimination and calibration
+for benefit. **Results**: The linear-interaction model displayed optimal or
+close-to-optimal performance across many simulation scenarios with moderate
+sample size (N=4,250; ~785 events). The RCS-model was optimal for strong
+non-linear deviations from a constant treatment effect, particularly when
+sample size was larger (N=17,000). The adaptive approach also required larger
+sample sizes. These findings were illustrated in the GUSTO-I
+trial. **Conclusion**: An interaction between baseline risk and treatment
+assignment should be considered to improve treatment effect predictions.
+
+\vspace{10mm}
+
+**Keywords**: treatment effect heterogeneity, absolute benefit, prediction models
+
+\newpage
+
 \doublespacing 
-\linenumbers
 
 # Introduction
 Predictive approaches to heterogeneity of treatment effects (HTE) aim at the
@@ -128,7 +152,7 @@ regime approaches focus on developing treatment assignment rules and rely
 heavily on modeling treatment effect modifiers.
 
 Risk-modeling approaches to predictive HTE analyses provide a viable option in
-the absence of well-established treatment effect modifier [@Kent2019;
+the absence of well-established treatment effect modifiers [@Kent2019;
 @PathEnE]. In simulations, modeling treatment-covariate interactions, often led
 to miscalibrated predictions of absolute benefit, contrary to risk-based
 methods, despite their weaker discrimination of benefit in the presence of true
@@ -160,9 +184,8 @@ measured covariates. Let $\{Y_i(z), z=0, 1\}$ denote the unobservable potential
 outcomes. We observe $Y_i = Z_iY_i(1) + (1 - Z_i)Y_i(0)$. We are interested in
 predicting the conditional average treatment effect (CATE), 
 $$\tau(x) = E\{Y(0) - Y(1)|X=x\}$$ 
-Assuming that $(Z, X, Y)$ is a random sample from the target population and that
-$\big(Y(0), Y(1)\big)\indep Z|X$, as we are in the RCT setting, we can predict
-CATE from
+Assuming that $\big(Y(0), Y(1)\big)\indep Z|X$, as we are in the RCT setting, we
+can predict CATE from
 \begin{align*}
 \tau(x) &= E\{Y(0)\given X=x\}-E\{Y(1)\given X=x\}\\
 &=E\{Y\given X=x, Z=0\}-E\{Y\given X=x, Z=1\}
@@ -201,7 +224,7 @@ adjusting the baseline covariate coefficients, such that the AUC of the
 regression model in the control arm was 0.65 and 0.85, respectively.
 
 These settings resulted in a simulation study of 648 scenarios covering the
-observed HTE in 32 large trials as well as many other potential variations of
+HTE observed in 32 large trials as well as many other potential variations of
 risk-based treatment effect (Supplement, Sections 2 and 3) [@Kent2016].
  
 ## Individualized risk-based benefit predictions
@@ -386,12 +409,12 @@ linear interaction `r median(rmseQuadratic$linear_predictor)`;
 RCS-3 `r median(rmseQuadratic$rcs_3_knots)`; Figure \ref{fig:rmsebase} panels A-C)
 from a constant relative treatment effect. With non-monotonic deviations, RCS-3
 slightly outperformed the linear interaction model
-(Median RMSE: linear interaction `r median(rmseNonMonotonic$linear_predictor)`;
+(median RMSE: linear interaction `r median(rmseNonMonotonic$linear_predictor)`;
 RCS-3 `r median(rmseNonMonotonic$rcs_3_knots)`; Figure \ref{fig:rmsebase} panel D).
 With strong treatment-related harms the results were very similar in most
 scenarios (Figure \ref{fig:rmsebase} panels A-C). Under non-monotonic deviations
 the optimal performance of RCS-3 was more pronounced
-(Median RMSE: linear interaction `r median(rmseNonMonotonicHarm$linear_predictor)`;
+(median RMSE: linear interaction `r median(rmseNonMonotonicHarm$linear_predictor)`;
 RCS-3 `r median(rmseNonMonotonicHarm$rcs_3_knots)`; Figure \ref{fig:rmsebase} panel D).
 A stronger average treatment effect (OR=0.5) led to larger absolute benefit
 predictions and consequently to larger RMSE for all approaches, but the relative
@@ -461,17 +484,18 @@ selectedScenario <- analysisIds %>%
 rmseNonMonotonicSampleSize <- rmse %>% dplyr::filter(scenarioId == selectedScenario)
 ```
 
-Increasing the sample size to `r 17000` favored RCS-3 the most. The difference in
-performance with the linear interaction approach was more limited in settings
-with a constant treatment effect 
-(Median RMSE: linear interaction `r median(rmseBaseCaseSampleSize$linear_predictor)`;
+Increasing the sample size to `r 17000` favored RCS-3 the most (Figure
+\ref{fig:rmsesamplesize}). The difference in performance with the linear
+interaction approach was more limited in settings with a constant treatment
+effect
+(median RMSE: linear interaction `r median(rmseBaseCaseSampleSize$linear_predictor)`;
 RCS-3 `r median(rmseBaseCaseSampleSize$rcs_3_knots)`) and with a true linear interaction
-(Median RMSE: linear interaction `r median(rmseLinearInteractionSampleSize$linear_predictor)`;
-RCS-3 `r median(rmseLinearInteractionSampleSize$rcs_3_knots)`).
+(median RMSE: linear interaction `r median(rmseLinearInteractionSampleSize$linear_predictor)`;
+RCS-3 `r median(rmseLinearInteractionSampleSize$rcs_3_knots)`)
 and more emphasized in settings with strong quadratic deviations 
-(Median RMSE: linear interaction `r median(rmseQuadraticSampleSize$linear_predictor)`;
+(median RMSE: linear interaction `r median(rmseQuadraticSampleSize$linear_predictor)`;
 RCS-3 `r median(rmseQuadraticSampleSize$rcs_3_knots)`) and non-monotonic deviations
-(Median RMSE: linear interaction `r median(rmseNonMonotonicSampleSize$linear_predictor)`;
+(median RMSE: linear interaction `r median(rmseNonMonotonicSampleSize$linear_predictor)`;
 RCS-3 `r median(rmseNonMonotonicSampleSize$rcs_3_knots)`).
 Due to the large sample size, the RMSE of the adaptive approach was even more
 similar to the best-performing method, and the constant relative treatment
@@ -540,8 +564,8 @@ non-monotonic deviations and very comparable performance to the – optimal –
 linear interaction model in the case of strong linear deviations (median RMSE of
 `r median(rmseLinearInteractionAuc$rcs_3_knots)` for RCS-3 compared to 
 `r median(rmseLinearInteractionAuc$linear_predictor)` for the linear interaction
-model). Similar to the base case scenario the adaptive approach wrongly selected
-the constant treatment effect model
+model; Figure \ref{fig:rmseauc}). Similar to the base case scenario the adaptive
+approach wrongly selected the constant treatment effect model
 (`r adaptiveSelections %>% filter(scenarioId == 297) %>% pull(treatment) * 100`\%
 and
 `r adaptiveSelections %>% filter(scenarioId == 405) %>% pull(treatment) * 100`\%
@@ -607,9 +631,9 @@ grid::grid.raster(tiff::readTIFF(here("figures/calibration_moderate_base.tiff"))
 
 
 The results from all individual scenarios can be explored online at
-[https://arekkas.shinyapps.io/simulation_viewer/](https://arekkas.shinyapps.io/simulation_viewer/). Additionally,
+[https://mi-erasmusmc.shinyapps.io/HteSimulationRCT/](https://mi-erasmusmc.shinyapps.io/HteSimulationRCT/). Additionally,
 all the code for the simulations can be found at
-[https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021](https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021)
+[https://github.com/mi-erasmusmc/HteSimulationRCT](https://github.com/mi-erasmusmc/HteSimulationRCT)
 
 
 ## Empirical illustration
@@ -711,7 +735,7 @@ presence of any suspected treatment-related harms.
 
 One limitation is that we assumed treatment benefit to be a function of baseline
 risk in the majority of the simulation scenarios. We attempted to expand our
-scenarios by considering constant moderate and strong treatment-related harms,
+scenarios by considering moderate and strong constant treatment-related harms,
 applied on the absolute scale, in line with previous work [@Glasziou1995]. In a
 limited set of scenarios with true interactions between treatment assignment and
 covariates, our conclusions remained unchanged (Supplement, Section 7). Even
