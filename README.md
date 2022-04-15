@@ -64,10 +64,13 @@ project
 
 ## Replication
 
-To download the code of the simulation study and explore our results run:
+To explore the simulation results locally, first clone the repository:
 ```bash
-git clone https://github.com/rekkasa/arekkas_HteSimulation_XXXX_2021.git
+git clone https://github.com/mi-erasmusmc/HteSimulationRCT.git
 ```
+
+The evaluation metrics for each simulation run can be found in the `csv` files
+in `data/processed` directory.
 
 You can also replicate the study by running:
 ```bash
@@ -79,3 +82,20 @@ R-package `renv` is used to recreate our R environment, to allow for reproducibl
 To adjust the settings of the simulation edit `code/SimulationScript.R`. You can increase 
 or reduce the resources allocated to the task or alter the settings of the simulations
 altogether.
+
+
+## Requirements
+
+The simulation study used
+[renv](https://rstudio.github.io/renv/articles/renv.html) R-package for freezing
+R-related dependencies. Launching the `RProject` will regenerate the development
+environment.
+
+The code for running the simulations is contained in 3 custom R-packages:
+
+- [SimulateHte](https://github.com/rekkasa/SimulateHte) generating the simulated
+  datasets.
+- [SmoothHte](https://github.com/rekkasa/SmoothHte) for fitting smooth
+  interactions of baseline risk with treatment assignement.
+- [SimulationEvaluationHte](https://github.com/rekkasa/SimulationEvaluationHte)
+  for computing evaluation metrics for every simulation run.
