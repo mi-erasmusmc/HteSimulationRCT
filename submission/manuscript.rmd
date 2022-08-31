@@ -38,7 +38,7 @@ bibliography: references.bib
 csl: jce.csl
 ---
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(knitr)
 library(kableExtra)

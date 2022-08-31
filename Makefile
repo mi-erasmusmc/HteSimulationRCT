@@ -136,8 +136,13 @@ figures/rmse_interaction_combined.tiff : code/PlotRmseInteractions.R\
 	data/processed/analysisIdsInteractions.csv
 	$< combined
 
-figures/gusto.tiff : code/GustoPlot.R\
+data/processed/bootstrapData.csv : code/CreateBootstrapData.R\
 	data/raw/gusto.rda
+	$< 8
+
+figures/gusto.tiff : code/GustoPlot.R\
+	data/raw/gusto.rda\
+	data/processed/bootstrapData.csv
 	$<
 
 figures/selected_model_adaptive_base.tiff : code/SelectedModelAdaptive.R\
@@ -250,4 +255,4 @@ restore:
 clean:
 	rm -rf data/raw/scenario_* data/processed/*.csv data/raw/gusto.rda figures/*.png figures/*.tiff; 
 book:
-	code/MakeBook.R
+	make submission/manuscript.pdf && make submission/supplement.pdf && code/MakeBook.R

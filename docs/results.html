@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -63,21 +63,21 @@ The linear interaction model was optimal under true linear deviations
 (median RMSE: constant treatment effect
 0.027;
 linear interaction 0.015;
-RCS-3 0.018; Figure  panels A-C)
+RCS-3 0.018; Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span> panels A-C)
 and even in the presence of true quadratic deviations
 (median RMSE: constant treatment effect
 0.057;
 linear interaction 0.020;
-RCS-3 0.021; Figure  panels A-C)
+RCS-3 0.021; Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span> panels A-C)
 from a constant relative treatment effect. With non-monotonic deviations, RCS-3
 slightly outperformed the linear interaction model
 (Median RMSE: linear interaction 0.019;
-RCS-3 0.018; Figure  panel D).
+RCS-3 0.018; Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span> panel D).
 With strong treatment-related harms the results were very similar in most
-scenarios (Figure  panels A-C). Under non-monotonic deviations
+scenarios (Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span> panels A-C). Under non-monotonic deviations
 the optimal performance of RCS-3 was more pronounced
 (Median RMSE: linear interaction 0.024;
-RCS-3 0.019; Figure  panel D).
+RCS-3 0.019; Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span> panel D).
 A stronger average treatment effect (OR=0.5) led to larger absolute benefit
 predictions and consequently to larger RMSE for all approaches, but the relative
 differences between different approaches were similar to the base case scenario
@@ -113,7 +113,7 @@ effect model was less often wrongly selected (Supplement, Figure S4).</p>
 <div class="figure">
 <span id="fig:rmsesamplesize"></span>
 <img src="index_files/figure-html/rmsesamplesize-1.png" alt="RMSE of the considered methods across 500 replications calculated in simulated samples of size 17,000 rather than 4,250 in Figure \ref{fig:rmsebase}. RMSE was calculated on a super-population of size 500,000" width="100%"><p class="caption">
-Figure 3.2: RMSE of the considered methods across 500 replications calculated in simulated samples of size 17,000 rather than 4,250 in Figure . RMSE was calculated on a super-population of size 500,000
+Figure 3.2: RMSE of the considered methods across 500 replications calculated in simulated samples of size 17,000 rather than 4,250 in Figure <span class="math inline">\(\ref{fig:rmsebase}\)</span>. RMSE was calculated on a super-population of size 500,000
 </p>
 </div>
 <p>Similarly, when we increased the AUC of the true prediction model to 0.85 (OR =
@@ -139,17 +139,17 @@ Figure 3.3: RMSE of the considered methods across 500 replications calculated in
 </div>
 <p>With a true constant relative treatment effect, discrimination for benefit was
 only slightly lower for the linear interaction model, but substantially lower
-for the non-linear RCS approaches (Figure ; panel
+for the non-linear RCS approaches (Figure <span class="math inline">\(\ref{fig:discrimination}\)</span>; panel
 A). With strong linear or quadratic deviations from a constant relative
 treatment effect, all methods discriminated quite similarly (Figure
-; panels B-C). With non-monotonic deviations, the
+<span class="math inline">\(\ref{fig:discrimination}\)</span>; panels B-C). With non-monotonic deviations, the
 constant effect model had much lower discriminative ability compared to all
 other methods
 (median AUC of 0.500 for the constant effects model,
 0.528
 for the linear interaction model and
 0.530
-Figure ; panel D).
+Figure <span class="math inline">\(\ref{fig:discrimination}\)</span>; panel D).
 The adaptive approach was unstable in terms of discrimination for benefit,
 especially with treatment-related harms. With increasing number of RCS knots, we
 observed decreasing median values and increasing variability of the
@@ -167,10 +167,10 @@ Figure 3.4: Discrimination for benefit of the considered methods across 500 repl
 </div>
 <p>In terms of calibration for benefit, the constant effects model outperformed all
 other models in the scenario with true constant treatment effects, but was
-miscalibrated for all deviation scenarios (Figure ). The
+miscalibrated for all deviation scenarios (Figure <span class="math inline">\(\ref{fig:calibration}\)</span>). The
 linear interaction model showed best or close to best calibration across all
 scenarios and was only outperformed by RCS-3 in the case of non-monotonic
-deviations and treatment-related harms (Figure ; panel
+deviations and treatment-related harms (Figure <span class="math inline">\(\ref{fig:calibration}\)</span>; panel
 D). The adaptive approach was worse calibrated under strong linear and
 non-monotonic deviations compared to the linear interaction model and
 RCS-3. When we increased the sample size to 17,000 (Supplement, Figure S6) or
@@ -198,7 +198,7 @@ predictions. Following our simulation results, RCS-4 and RCS-5 models were
 excluded. Finally, an adaptive approach with the 3 candidate models was applied.</p>
 <p>All considered methods provided similar fits, predicting increasing benefits for
 patients with higher baseline risk predictions, and followed the evolution of
-the stratified estimates closely (Figure ). The constant
+the stratified estimates closely (Figure <span class="math inline">\(\ref{fig:gusto}\)</span>). The constant
 treatment effect model had somewhat lower AIC compared to the linear interaction
 model (AIC:
 9,336 versus
@@ -247,7 +247,7 @@ Figure 3.6: Individualized absolute benefit predictions based on baseline risk w
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-08-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.13/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -92,7 +92,7 @@ X_5,\dots,X_8 \sim B(1, 0.2)
 \end{equation*}\]</span></p>
 <p>We first, generate the binary outcomes <span class="math inline">\(Y\)</span> for the untreated patients (<span class="math inline">\(Z=0\)</span>),
 based on</p>
-<p><span class="math display" id="eq:p0">\[\begin{equation} 
+<p><span class="math display" id="eq:p0">\[\begin{equation}
 P(Y=1\:\vert\:X=x, Z=0) = g(\beta_0 + \beta_1x_1+\dots+\beta_8x_8) = g(lp_0),
 \tag{5.1}
 \end{equation}\]</span></p>
@@ -42431,7 +42431,7 @@ subgroup-specific estimate.</p>
 <p>Assuming a constant relative treatment effect, fit the adjusted model in
 <a href="supplement.html#eq:risk">(5.3)</a>. Then, predict absolute benefit using</p>
 <p><span class="math display" id="eq:main">\[\begin{equation}
-\hat{\tau}(x;\hat{\beta},\hat{\gamma})=g(f(\hat{lp}, 0)) - g(f(\hat{lp},1)), 
+\hat{\tau}(x;\hat{\beta},\hat{\gamma})=g(f(\hat{lp}, 0)) - g(f(\hat{lp},1)),
 \tag{5.4}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(f(\hat{lp}, z) = \hat{lp}+\hat{\gamma}z\)</span>, with <span class="math inline">\(\hat{\gamma}\)</span> the
@@ -42475,13 +42475,13 @@ Figure 5.1: Model selection frequencies of the adaptive approach based on Akaike
 <div class="figure">
 <span id="fig:adaptiveSampleSize"></span>
 <img src="supplement_files/figure-html/adaptiveSampleSize-1.png" alt="Model selection frequencies of the adaptive approach based on Akaike's Information Criterion across 500 replications. Sample size is 17,000 rather than 4,250 in Figure \ref{fig:adaptiveBase}" width="100%"><p class="caption">
-Figure 5.2: Model selection frequencies of the adaptive approach based on Akaike’s Information Criterion across 500 replications. Sample size is 17,000 rather than 4,250 in Figure 
+Figure 5.2: Model selection frequencies of the adaptive approach based on Akaike’s Information Criterion across 500 replications. Sample size is 17,000 rather than 4,250 in Figure <span class="math inline">\(\ref{fig:adaptiveBase}\)</span>
 </p>
 </div>
 <div class="figure">
 <span id="fig:adaptiveAuc"></span>
 <img src="supplement_files/figure-html/adaptiveAuc-1.png" alt="Model selection frequencies of the adaptive approach based on Akaike's Information Criterion across 500 replications. AUC is 0.85 rather than 0.75 in Figure \ref{fig:adaptiveBase}" width="100%"><p class="caption">
-Figure 5.3: Model selection frequencies of the adaptive approach based on Akaike’s Information Criterion across 500 replications. AUC is 0.85 rather than 0.75 in Figure 
+Figure 5.3: Model selection frequencies of the adaptive approach based on Akaike’s Information Criterion across 500 replications. AUC is 0.85 rather than 0.75 in Figure <span class="math inline">\(\ref{fig:adaptiveBase}\)</span>
 </p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -42549,13 +42549,13 @@ Figure 5.8: RMSE of the considered methods across 500 replications calculated in
 <div class="figure">
 <span id="fig:rmseHighSampleSize"></span>
 <img src="supplement_files/figure-html/rmseHighSampleSize-1.png" alt="RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. Sample size is 17,000 rather than 4,250 in Figure \ref{fig:rmseHighBase}." width="100%"><p class="caption">
-Figure 5.9: RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. Sample size is 17,000 rather than 4,250 in Figure .
+Figure 5.9: RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. Sample size is 17,000 rather than 4,250 in Figure <span class="math inline">\(\ref{fig:rmseHighBase}\)</span>.
 </p>
 </div>
 <div class="figure">
 <span id="fig:rmseHighAuc"></span>
 <img src="supplement_files/figure-html/rmseHighAuc-1.png" alt="RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. AUC is 0.85 rather than in Figure \ref{fig:rmseHighBase}." width="100%"><p class="caption">
-Figure 5.10: RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. AUC is 0.85 rather than in Figure .
+Figure 5.10: RMSE of the considered methods across 500 replcations calculated in a simulated sample of size 500,000. AUC is 0.85 rather than in Figure <span class="math inline">\(\ref{fig:rmseHighBase}\)</span>.
 </p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -44678,7 +44678,7 @@ lp(x)=&amp; \beta_0 + \beta_1 \text{age} + \beta_2 I(\text{Killip}=II) + \beta_3
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-04-12.</p>
+    <p>"<strong></strong>" was written by Alexandros Rekkas. It was last built on 2022-08-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

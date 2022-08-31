@@ -1,6 +1,6 @@
 --- 
 author: Alexandros Rekkas
-date: "2022-04-12"
+date: "2022-08-31"
 site: bookdown::bookdown_site
 documentclass: book
 biblio-style: apalike
@@ -36,6 +36,14 @@ csl: jce.csl
 \usepackage{xcolor}
 
 
+```
+#> Warning in .recacheSubclasses(def@className, def, env):
+#> undefined subclass "packedMatrix" of class "replValueSp";
+#> definition not updated
+#> Warning in .recacheSubclasses(def@className, def, env):
+#> undefined subclass "packedMatrix" of class "mMatrix";
+#> definition not updated
+```
 
 \doublespacing 
 \linenumbers
