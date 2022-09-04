@@ -85,19 +85,19 @@ res <- gridExtra::grid.arrange(
       plot.title = element_markdown(),
       axis.title = element_blank(),
       legend.direction = "horizontal",
-      legend.position = c(.364, .94),
+      legend.position = c(.364, .935),
       legend.text = element_text(size = 7),
       legend.title = element_text(size = 8),
-      panel.grid.minor = element_blank(),
-      axis.text.x = element_blank()
+      panel.grid.minor = element_blank()
+      # axis.text.x = element_blank()
     ),
   plotList[[2]] +
     theme(
       plot.title = element_markdown(),
       axis.title = element_blank(),
       legend.position = "none",
-      panel.grid.minor = element_blank(),
-      axis.text.x = element_blank()
+      panel.grid.minor = element_blank()
+      # axis.text.x = element_blank()
     ),
   plotList[[3]] +
     theme(
@@ -116,7 +116,12 @@ res <- gridExtra::grid.arrange(
   heights = c(1, 1.05),
   nrow = 2,
   ncol = 2,
-  left = "C-statistic for benefit"
+  left = "C-statistic for benefit",
+  bottom = grid::textGrob(
+    "Method",
+    just = "center",
+    gp = grid::gpar(fontsize = 10)
+  )
 )
 
 fileName <- paste0(

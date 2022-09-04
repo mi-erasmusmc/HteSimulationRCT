@@ -248,6 +248,27 @@ submission/supplement.pdf : submission/supplement.rmd\
 	figures/scenario_422.png
 	R -e 'rmarkdown::render("submission/supplement.rmd", output_format = "all")'
 
+submission/manuscript_tracked.docx : submission/manuscript_tracked.rmd\
+	submission/references.bib\
+	data/raw/gusto.rda\
+	data/processed/adaptiveModel.csv\
+	data/processed/gustoPerformanceMetrics.csv\
+	data/processed/adaptiveSelections.csv\
+	data/processed/rmseDistribution.csv\
+	data/processed/discriminationDistribution.csv\
+	data/processed/calibration.csv\
+	figures/rmse_moderate_base.tiff\
+	figures/rmse_moderate_sample_size.tiff\
+	figures/rmse_moderate_auc.tiff\
+	figures/calibration_moderate_base.tiff\
+	figures/discrimination_moderate_base.tiff\
+	figures/gusto.tiff
+	R -e 'rmarkdown::render("submission/manuscript_tracked.rmd", output_format = "bookdown::word_document2")'
+
+
+submission/reviewer_response.pdf : submission/reviewer_response.rmd
+	R -e 'rmarkdown::render("submission/reviewer_response.rmd", output_format = "bookdown::pdf_document2")'
+
 .PHONY:
 data : $(EVALFILES)
 restore:

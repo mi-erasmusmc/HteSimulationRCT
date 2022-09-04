@@ -99,10 +99,10 @@ res <- gridExtra::grid.arrange(
       plot.title = element_markdown(),
       axis.title = element_blank(),
       legend.direction = "horizontal",
-      legend.position = c(.354, .93),
+      legend.position = c(.354, .925),
       legend.text = element_text(size = 7),
       legend.title = element_text(size = 8),
-      axis.text.x = element_blank()
+      # axis.text.x = element_blank()
     ),
   plotList[[2]] +
     theme(
@@ -110,7 +110,7 @@ res <- gridExtra::grid.arrange(
       plot.title = element_markdown(),
       axis.title = element_blank(),
       legend.position = "none",
-      axis.text.x = element_blank()
+      # axis.text.x = element_blank()
     ),
   plotList[[3]] +
     theme(
@@ -138,6 +138,11 @@ res <- gridExtra::grid.arrange(
       )
     ),
     rot = 90
+  ),
+  bottom = grid::textGrob(
+    "Method",
+    just = "center",
+    gp = grid::gpar(fontsize = 10)
   )
 )
 

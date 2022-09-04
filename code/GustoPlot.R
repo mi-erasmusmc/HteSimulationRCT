@@ -105,10 +105,14 @@ scale_custom <- list(
 
 plot <- ggplot() +
   geom_pointrange(
-    data = stratified$data,
+    data = bootstrapData %>%
+      filter(method == "stratified") %>%
+      bind_cols(
+        tibble(value = stratified$data$estimate)
+      ),
     aes(
-      x     = meanRisk,
-      y     = estimate,
+      x     = risk,
+      y     = value,
       ymin  = lower,
       ymax  = upper,
       color = "Stratified"
@@ -121,7 +125,7 @@ plot <- ggplot() +
       label = "Constant treatment effect"
     ),
     aes(
-      x     = x, 
+      x     = x,
       color = label,
       linetype = label
     ),

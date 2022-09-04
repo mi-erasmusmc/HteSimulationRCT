@@ -146,12 +146,13 @@ gridList <- list(
       plot.title = element_markdown(size = 9),
       axis.title.x = ggplot2::element_blank(),
       axis.title.y = ggplot2::element_blank(),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       legend.direction = "horizontal",
       legend.title = element_text(size = 7.5),
       legend.text = element_text(size = 7),
-      legend.position = c(.273, .87)
+      legend.position = c(.273, .848)
     ),
   absolutePlots$plot[[1]] +
     ggtitle("Simulated absolute benefit in treated patients") +
@@ -174,7 +175,8 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -189,7 +191,8 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       plot.title = element_markdown(size = 9),
       axis.title = element_blank(),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -219,7 +222,8 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -234,7 +238,8 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       plot.title = element_markdown(size = 9),
       axis.title = element_blank(),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       legend.position = "none"
     ),
   absolutePlots$plot[[3]] +
@@ -259,7 +264,8 @@ gridList <- list(
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
       axis.text.y = element_text(size = 8),
-      axis.text.x = element_blank(),
+      # axis.text.x = element_blank(),
+      axis.text.x = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
@@ -272,6 +278,7 @@ gridList <- list(
     theme(
       panel.grid.minor = element_blank(),
       axis.title = element_blank(),
+      # axis.text.x = element_text(size = 8),
       axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       legend.position = "none",

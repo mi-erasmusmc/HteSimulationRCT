@@ -64,11 +64,13 @@ bootstrapConfidenceInterval <- function(x, data) {
 
   riskLinearPredictor <- predict(
     prediction,
-    newdata = bootData %>% mutate(treatment = 0) %>% data.frame()
+    newdata = bootData %>%
+      dplyr::mutate(treatment = 0) %>%
+      data.frame()
   )
 
   bootData <- bootData %>%
-    mutate(
+    dplyr::mutate(
       riskLinearPredictor = riskLinearPredictor
     )
   constantModel <- fitModelBasedHte(
@@ -84,6 +86,23 @@ bootstrapConfidenceInterval <- function(x, data) {
     data     = bootData,
     settings = createRcsSettings()
   )
+
+  stratified <- fitStratifiedHte(
+      data     = bootData,
+      settings = createStratifiedSettings()
+  )
+
+  bootBenefitPredictionsStratified <- stratified$data %>%
+    dplyr::rename(
+      c(
+        "value" = "estimate",
+        "risk" = "meanRisk"
+      )
+    ) %>%
+    dplyr::mutate(
+      method = "stratified"
+    ) %>%
+    dplyr::select(riskStratum, value, risk, method)
 
   bootBenefitPredictionsConstant <- tibble(
     value = predictBenefitModelBasedHte(
@@ -114,7 +133,8 @@ bootstrapConfidenceInterval <- function(x, data) {
     bind_rows(
       bootBenefitPredictionsConstant,
       bootBenefitPredictionsLinear,
-      bootBenefitPredictionsRcs
+      bootBenefitPredictionsRcs,
+      bootBenefitPredictionsStratified
     ) %>%
       mutate(run = x)
   )
@@ -127,7 +147,7 @@ ParallelLogger::clusterRequire(cl, "rms")
 ParallelLogger::clusterRequire(cl, "SmoothHte")
 
 res <- ParallelLogger::clusterApply(
-  x = 1:1e3,
+  x = 1:1e4,
   cl = cl,
   fun = bootstrapConfidenceInterval,
   data = gusto
@@ -135,18 +155,38 @@ res <- ParallelLogger::clusterApply(
 
 mergedResults <- dplyr::bind_rows(res)
 
-cis <- mergedResults %>%
+mergedResultsNoStrat <- mergedResults %>%
+  filter(is.na(riskStratum)) %>%
+  select(-riskStratum)
+
+mergedResultsStrat <- mergedResults %>%
+  filter(!is.na(riskStratum))
+
+cisNoStrat <- mergedResultsNoStrat %>%
   group_by(method, risk) %>%
   summarise(
     lower = quantile(value, probs = .025),
     upper = quantile(value, probs = .975)
-  )
+  ) %>%
+  ungroup()
 
-dd <- mergedResults %>%
-  filter(run == 1) %>%
-  left_join(cis)
+cisStrat <- mergedResultsStrat %>%
+  group_by(riskStratum) %>%
+  summarise(
+    risk = mean(risk),
+    lower = quantile(value, probs = .025),
+    upper = quantile(value, probs = .975)
+  ) %>%
+  ungroup() %>%
+  mutate(method = "stratified") %>%
+  select(-riskStratum) %>%
+  relocate(method)
+
+cis <- cisNoStrat %>%
+  bind_rows(cisStrat) %>%
+  relocate(method, risk, lower, upper)
 
 readr::write_csv(
-  dd,
+  cis,
   "data/processed/bootstrapData.csv"
 )

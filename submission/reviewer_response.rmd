@@ -1,0 +1,172 @@
+---
+title: "Response to reviewers"
+output:
+  bookdown::pdf_document2: default
+geometry: margin=1.0in
+toc: true
+font-size: 12pt
+editor_options: 
+  chunk_output_type: console
+header-includes:
+  - \renewcommand*\familydefault{\sfdefault}
+  - \usepackage{setspace}
+  - \usepackage[left, pagewise]{lineno}
+  - \usepackage{caption}
+  - \usepackage{amsmath}
+  - \doublespacing
+  - \usepackage{amssymb}
+  - \usepackage{bm}
+  - \usepackage{booktabs}
+  - \date{}
+  - \newcommand\given[1][]{\:#1\vert\:}
+  - \newcommand{\indep}{\perp \!\!\! \perp}
+bibliography: references.bib
+csl: jce.csl
+---
+
+# Reviewer 1 {-}
+"Individualized treatment effect was predicted best by modeling baseline risk in
+interaction with treatment assignment"
+Comments to the Authors:
+
+I read the manuscript with interest, however, the authors first need to address
+the following concerns.
+
+- Page 2.  Line 6. Need to clarify what it means by baseline risk, as well as
+what it means by the “reference.”  Line 10. Related to the comment above, can
+you provide a sentence or two briefly describing what risk-modeling approaches
+are?  Line 12. Need to clarify what it means by “absolute benefit.”
+Line 13. Not clear, from the written sentence, which methods (whether they are
+risk-based methods or the method based on modeling treatment effect-modifiers)
+lead to the weaker discrimination of benefit in the presence of true effect
+modifiers.  Line 18. The estimates refer to estimates of which parameters? Need
+to clarify. Also, please indicate why these estimates may not be applied to
+individual patients. \textcolor{green}{[DONE]}
+
+- Page 4.  Line 1. Not clear what it means by the "AUC value of 0.75." Need to
+explain AUC. And after all, what is the "true" value of $\beta$ that was used in the
+simulations?  Line 6. What is c? And which term in the equation is the term that
+corresponds to the constant treatment effect? What are the values of vs used in
+the simulations?  Line 11. What do you mean by “standard” alpha? what is
+"standard"? What is "effect"? Does it refer to the effect on the approaches'
+performance? What do you mean by the effect of risk model discriminative
+ability? How can risk model discriminative ability have any effects? Please
+clarify. \textcolor{green}{[DONE]}
+
+- Page 5.  Line 14. Please clarify how $\delta_0$, $\delta_1$ and $\delta_3$ are
+  estimated. \textcolor{green}{[DONE]}
+
+- Page 6.  Line 8. Please describe in a sentence what "ICI for benefit" is.
+Line17. Please comment on how those 6 predictors were selected (is it also
+selected based on AIC?). \textcolor{green}{[DONE]}
+
+-  Page 7.  Line 14. Please describe how the "absolute benefit predictions" were
+evaluated (please present the evaluation metric). \textcolor{green}{[DONE]}
+
+- Page 8. In the figures, I think for each panel you should label the X-axis
+(i.e., the methods under consideration). At first, it was difficult to
+understand what was displayed. \textcolor{green}{[DONE]}
+
+- Page 13. In Figure 4, again, what is the C-statistic for benefit? Need an
+explicit expression or a clear description (both in figure caption and in the
+text). \textcolor{green}{[DONE]}
+
+- Page 16. In Figure 6, please also display the model-based confidence bands for
+all the methods. Also please clarify how the predicted benefit was
+computed. Does it just mean the treatment effect? If so, how could the "constant
+treatment effect" method have a non-constant treatment effect as a function of
+the baseline risk? Please clarify. \textcolor{green}{[DONE]}
+
+- Page 18.  Line 21. Generally, in the estimation, how do you distinguish the
+treatment-related harm from the actual treatment effect? \textcolor{red}{[UNRESOLVED]}
+
+- Page 19.  Line 1. As discussed in the Discussion, the authors only considered
+the risk-based methods. Along this line, I think the title of the manuscript is,
+to some extent, misleading, because it gives an impression that the modeling
+baseline risk-and-treatment interaction is a “globally best method” for the
+individualized treatment effect estimation, which is not likely to be true.
+Line 2. Why only tree-based approaches were cited? There is a large volume of
+treatment effect modeling methods, which I think should be cited as well, if
+tree-based approaches are to be cited.  Line 8. I don’t think what is stated in
+line 8 is true when the "true" data model is defined based on separate
+treatment-by-covariate interaction terms, in addition to the main effect
+terms. Furthermore, there are many methods that avoid overfitting through
+regularization and simultaneous treatment effect modifier selection. Authors
+should discuss this. \textcolor{red}{[UNRESOLVED]}
+
+# Reviewer 2 {-}
+
+I reviewed the same manuscript last month. It seems that the manuscript is not
+revised and is the same as the previous version and did not address any of the
+comments. Please see my comments made in the previous round of review. Would you
+please check if this attached manuscript is a revised version ? Thank you.
+
+# Reviewer 3 {-}
+
+The content of this paper is methodologically sound and the results
+are consistent with what the literature has shown (namely that more complex
+models are often outperformed by simpler ones in small sample and weaker signal
+scenarios) and the writing is generally adequate. However, as written, the paper
+does not focus on the significance of this methodology and the simulation
+studies in terms of guiding clinical care (see Comment 1 for more details); this
+was the main weakness of this paper.
+
+1. The introduction will benefit from more emphasis on the practical
+   significance of modeling baseline risk and treatment effects. In particular,
+   in which real-life scenarios was this type of analysis useful and what
+   happened when the baseline risk and its interaction with treatment was
+   neglected in favor of a simpler approach? What type of analyses are typically
+   done in such scenarios and what does the approach presented in this
+   manuscript offer on top of the usual analysis methods?
+
+2. During the application of restricted cubic splines, was there an assumption
+   of interaction between risk and treatment effects as well? For example, were
+   the restricted cubic splines fit separately to each treatment arm?
+
+3. It would also be helpful to discuss the results (particularly the fact that
+   the simpler model--linear interaction--outperforms RCS-3 in smaller sample
+   size scenarios and weaker signals, even when there is nonlinearity in the
+   true underlying relationship, as well as the fact that RCS-3 outperforms
+   RCS-4 and RCS-5 in many scenarios) in terms of the bias-variance tradeoff. In
+   particular, the restricted cubic splines-based methods introduce additional
+   degrees of freedom and thus increase the variance, despite being expected to
+   reduce the bias.
+
+# Reviewer 4 {-}
+
+This paper presents the results from a very large simulation study to
+evaluate a number of fairly simple statistical approaches to estimate individual
+treatment effects using data from a RCT. The paper is well written and the
+results are presented objectively. The results show essentially what you might
+expect, that if the data generating method is more complicated then flexible
+methods perform best, while if the data generation method is more simple then
+simpler methods do best. Furthermore, with larger sample size flexible methods
+tend to do better. The authors end up essentially recommending an approach that
+has a linear interaction term, or one with a cubic spline. A couple of the
+comparators are even more simple than these (constant treatment effect and
+stratification by quartiles), and it is no surprise that these naïve method are
+not good in the simulations. So if the point of the paper is to discourage use
+of these naïve methods, then that is a valuable contribution.  The big
+limitation of the whole study is that the baseline risk (i.e. the linear
+combination of the X variables from the control arm of the RCT) is assumed to be
+the driver of the individual treatment effect. The data is generated with this
+assumption, and all the estimation methods make this assumption. The authors
+totally acknowledge this limitation. But I would have thought that in the
+majority of realistic situations the linear combination of X’s for the main
+effect would have been different from the linear combination of X’s in the
+interaction with treatment. In this case the authors conclusion that linear
+interaction and RCS3 are good, would likely not hold up. The authors do
+reference a few articles that use tree-based methods (there are many many more
+and lots of non tree-based approaches too), and correctly point out their
+potential for overfitting. But regularization and cross-validation approaches
+can do a pretty good job at limiting the overfitting. So I think I would favor
+tree-based (or other more modern approaches), unless there is some clinical or
+scientific rationale to believe that the control group risk is the driver of the
+treatment effect heterogeneity.  A couple of others things that should be
+mentioned as caveats. In the simulated data the X variables are made independent
+of each other. If they were made to be correlated, that would probably be more
+realistic. Do you have any information on how this might change the findings, in
+general terms.  Larger sample sizes also opens up the possibility of
+generalizing the linear additive assumption for the control group risk. For
+example, this part of the model could now include non-linear terms in X and
+interactions between X’s.
