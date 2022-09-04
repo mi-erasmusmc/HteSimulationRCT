@@ -4,6 +4,8 @@ submission/*.pdf
 *cache
 manuscript_files
 manuscript_cache
+manuscript_tracked_files
+manuscript_tracked_cache
 supplement_files
 supplement_cache
 rsconnect
