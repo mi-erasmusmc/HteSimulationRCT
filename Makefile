@@ -2,28 +2,46 @@ RAW = data/raw
 IDS = $(shell seq 1 648)
 DIR = $(addprefix $(RAW)/scenario_, $(IDS))
 EVALFILES = $(addsuffix /evaluation.rds, $(DIR))
+IDS_SENS = $(shell seq 677 678)
+DIR_SENS = $(addprefix $(RAW)/scenario_, $(IDS_SENS))
+EVALFILES_SENS = $(addsuffix /evaluation.rds, $(DIR_SENS))
 
 print-% :
 	@echo '$*=$($*)'
 
 $(EVALFILES) : code/SimulationScript.R\
 	       data/processed/analysisIds.csv\
-	       data/processed/analysisIdsInteractions.csv
+	       data/processed/analysisIdsInteractions.csv\
+				 data/processed/analysisIdsSensitivity.csv
 	$< $@
 
+$(EVALFILES_SENS) : code/SimulationScript.R\
+	       data/processed/analysisIds.csv\
+	       data/processed/analysisIdsInteractions.csv\
+				 data/processed/analysisIdsSensitivity.csv
+	$< $@
 
-figures/scenario_251.png : code/PlotScenarioQuartileBoxplots.R\
-	data/processed/analysisIds.csv
-	$< 251
-figures/scenario_324.png : code/PlotScenarioQuartileBoxplots.R\
-	data/processed/analysisIds.csv
-	$< 324
-figures/scenario_406.png : code/PlotScenarioQuartileBoxplots.R\
-	data/processed/analysisIds.csv
-	$< 406
-figures/scenario_422.png : code/PlotScenarioQuartileBoxplots.R\
-	data/processed/analysisIds.csv
-	$< 422
+figures/deviate_linear_08.png figures/deviate_quadratic_08.png figures/deviate_linear_absolute_08.png figures/deviate_quadratic_absoltue_08.png : code/PlotDeviations.R\
+	code/helpers/PlotGammas.R\
+	code/helpers/PlotDeviationsFunctions.R\
+	data/processed/analysisIds.csv\
+	data/processed/analysisIdsInteractions.csv
+	$<
+
+figures/rmse_constant.png figures/rmse_constant.tiff : code/RmseConstant.R\
+	code/helpers/CreateManuscriptPlots.R\
+	data/processed/rmse.csv
+	$<
+
+figures/rmse_nl_auc.tiff figures/rmse_nl_auc.png : code/NlAucPlots.R\
+	code/helpers/CreateManuscriptPlots.R\
+	data/processed/rmse.csv
+	$<
+
+figures/rmse_nl_n.tiff figures/rmse_nl_n.png : code/NonLinearityNPatientsPlots.R\
+	code/helpers/CreateManuscriptPlots.R\
+	data/processed/rmse.csv
+	$<
 
 figures/rmse_moderate_base.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -31,7 +49,15 @@ figures/rmse_moderate_base.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< moderate 4250 0.75 base
+	$< moderate 4250 0.75 base 0
+
+figures/rmse_moderate_base_sensitivity.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.75 base 1
 
 figures/rmse_moderate_sample_size.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -39,7 +65,15 @@ figures/rmse_moderate_sample_size.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< moderate 17000 0.75 sample_size
+	$< moderate 17000 0.75 sample_size 0
+
+figures/rmse_moderate_sample_size_sensitivity.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 17000 0.75 sample_size 1
 
 figures/rmse_moderate_auc.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -47,7 +81,39 @@ figures/rmse_moderate_auc.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< moderate 4250 0.85 auc
+	$< moderate 4250 0.85 auc 0
+
+figures/rmse_moderate_auc_sensitivity.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.85 auc 1
+
+figures/rmse_absent_base.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< absent 4250 0.75 base 0
+
+figures/rmse_absent_sample_size.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< absent 17000 0.75 sample_size 0
+
+figures/rmse_absent_auc.tiff : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< absent 4250 0.85 auc 0
 
 figures/rmse_high_base.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -55,7 +121,7 @@ figures/rmse_high_base.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< high 4250 0.75 base
+	$< high 4250 0.75 base 0
 
 figures/rmse_high_sample_size.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -63,7 +129,7 @@ figures/rmse_high_sample_size.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< high 17000 0.75 sample_size
+	$< high 17000 0.75 sample_size 0
 
 figures/rmse_high_auc.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -71,7 +137,7 @@ figures/rmse_high_auc.tiff : code/PlotRmse.R\
 	code/helpers/Absolute.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
-	$< high 4250 0.85 auc
+	$< high 4250 0.85 auc 0
 
 figures/calibration_moderate_base.tiff : code/CalibrationBase.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -112,6 +178,11 @@ figures/discrimination_moderate_auc.tiff : code/DiscriminationBase.R\
 	data/processed/analysisIds.csv
 	$< moderate 4250 0.85 auc
 
+figures/rmse_n_auc.tiff : code/NPatientsAucPlots.R\
+	code/helpers/CreateManuscriptPlots.R\
+	data/processed/rmse.csv
+	$<
+
 figures/rmse_interaction_positive.tiff : code/PlotRmseInteractions.R\
 	code/helpers/CreateManuscriptPlots.R\
 	code/helpers/Absolute.R\
@@ -136,13 +207,8 @@ figures/rmse_interaction_combined.tiff : code/PlotRmseInteractions.R\
 	data/processed/analysisIdsInteractions.csv
 	$< combined
 
-data/processed/bootstrapData.csv : code/CreateBootstrapData.R\
-	data/raw/gusto.rda
-	$< 8
-
 figures/gusto.tiff : code/GustoPlot.R\
-	data/raw/gusto.rda\
-	data/processed/bootstrapData.csv
+	data/raw/gusto.rda
 	$<
 
 figures/selected_model_adaptive_base.tiff : code/SelectedModelAdaptive.R\
@@ -191,24 +257,24 @@ data/processed/gustoPerformanceMetrics.csv : code/GustoPerformanceMetrics.R\
 	data/raw/gusto.rda
 	$<
 
-submission/manuscript.pdf : submission/manuscript.rmd\
-	submission/references.bib\
-	data/raw/gusto.rda\
-	data/processed/adaptiveModel.csv\
-	data/processed/gustoPerformanceMetrics.csv\
-	data/processed/adaptiveSelections.csv\
-	data/processed/rmseDistribution.csv\
-	data/processed/discriminationDistribution.csv\
-	data/processed/calibration.csv\
-	figures/rmse_moderate_base.tiff\
-	figures/rmse_moderate_sample_size.tiff\
-	figures/rmse_moderate_auc.tiff\
-	figures/calibration_moderate_base.tiff\
-	figures/discrimination_moderate_base.tiff\
-	figures/gusto.tiff
-	R -e 'rmarkdown::render("submission/manuscript.rmd", output_format = "bookdown::pdf_document2")'
+submission/arxiv.sty : code/GetArxivStyle.sh
+	$<
 
-submission/manuscript.docx : submission/manuscript.rmd\
+extras/protocol/protocol.pdf : extras/protocol/protocol.rmd\
+	extras/protocol/references.bib\
+	extras/protocol/jamia.csl\
+	data/processed/analysisIds.csv\
+	data/processed/analysisIdsInteractions.csv\
+	figures/deviate_linear_08.png\
+	figures/deviate_quadratic_08.png
+	R -e 'rmarkdown::render("extras/protocol/protocol.rmd", output_format = "all")'
+
+extras/outline/outline.pdf : extras/outline/outline.rmd\
+			     data/raw/scenario_1/evaluation.rds
+	R -e 'rmarkdown::render("extras/outline/outline.rmd", output_format = "all")'
+
+submission/manuscript.pdf submission/manuscript.docx : submission/manuscript.rmd\
+	submission/arxiv.sty\
 	submission/references.bib\
 	data/raw/gusto.rda\
 	data/processed/adaptiveModel.csv\
@@ -223,7 +289,7 @@ submission/manuscript.docx : submission/manuscript.rmd\
 	figures/calibration_moderate_base.tiff\
 	figures/discrimination_moderate_base.tiff\
 	figures/gusto.tiff
-	R -e 'rmarkdown::render("submission/manuscript.rmd", output_format = "bookdown::word_document2")'
+	R -e 'rmarkdown::render("submission/manuscript.rmd", output_format = "all")'
 
 submission/supplement.pdf : submission/supplement.rmd\
 	data/raw/gusto.rda\
@@ -242,38 +308,21 @@ submission/supplement.pdf : submission/supplement.rmd\
 	figures/rmse_interaction_positive.tiff\
 	figures/rmse_interaction_negative.tiff\
 	figures/rmse_interaction_combined.tiff\
+	figures/scenario_397.png\
 	figures/scenario_251.png\
-	figures/scenario_324.png\
 	figures/scenario_406.png\
 	figures/scenario_422.png
 	R -e 'rmarkdown::render("submission/supplement.rmd", output_format = "all")'
 
-submission/manuscript_tracked.docx : submission/manuscript_tracked.rmd\
-	submission/references.bib\
-	data/raw/gusto.rda\
-	data/processed/adaptiveModel.csv\
-	data/processed/gustoPerformanceMetrics.csv\
-	data/processed/adaptiveSelections.csv\
-	data/processed/rmseDistribution.csv\
-	data/processed/discriminationDistribution.csv\
-	data/processed/calibration.csv\
-	figures/rmse_moderate_base.tiff\
-	figures/rmse_moderate_sample_size.tiff\
-	figures/rmse_moderate_auc.tiff\
-	figures/calibration_moderate_base.tiff\
-	figures/discrimination_moderate_base.tiff\
-	figures/gusto.tiff
-	R -e 'rmarkdown::render("submission/manuscript_tracked.rmd", output_format = "bookdown::word_document2")'
-
-
-submission/reviewer_response.pdf : submission/reviewer_response.rmd
-	R -e 'rmarkdown::render("submission/reviewer_response.rmd", output_format = "bookdown::pdf_document2")'
+submission/iscb_2022_abstract.docx : submission/iscb_2022_abstract.rmd\
+	submission/arxiv.sty\
+	submission/references.bib
+	R -e 'rmarkdown::render("submission/iscb_2022_abstract.rmd", output_format = "all")'
 
 .PHONY:
 data : $(EVALFILES)
 restore:
 	code/Clean.R
 clean:
-	rm -rf data/raw/scenario_* data/processed/*.csv data/raw/gusto.rda figures/*.png figures/*.tiff; 
-book:
-	make submission/manuscript.pdf && make submission/supplement.pdf && code/MakeBook.R
+	rm -rf data/raw/scenario_* data/processed/*.csv data/raw/gusto.rda figures/*.png figures/*.tiff; code/Clean.R
+sensitivity : $(EVALFILES_SENS)
