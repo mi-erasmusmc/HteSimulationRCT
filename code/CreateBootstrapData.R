@@ -166,16 +166,21 @@ cisNoStrat <- mergedResultsNoStrat %>%
   group_by(method, risk) %>%
   summarise(
     lower = quantile(value, probs = .025),
-    upper = quantile(value, probs = .975)
+    upper = quantile(value, probs = .975),
+    lowerRisk = -1,
+    upperRisk = -1
   ) %>%
   ungroup()
 
 cisStrat <- mergedResultsStrat %>%
+  rename("risk_x" = "risk") %>% 
   group_by(riskStratum) %>%
   summarise(
-    risk = mean(risk),
+    risk = mean(risk_x),
     lower = quantile(value, probs = .025),
-    upper = quantile(value, probs = .975)
+    upper = quantile(value, probs = .975),
+    lowerRisk = quantile(risk_x, probs = .025),
+    upperRisk = quantile(risk_x, probs = .975)
   ) %>%
   ungroup() %>%
   mutate(method = "stratified") %>%
@@ -185,6 +190,7 @@ cisStrat <- mergedResultsStrat %>%
 cis <- cisNoStrat %>%
   bind_rows(cisStrat) %>%
   relocate(method, risk, lower, upper)
+
 
 readr::write_csv(
   cis,

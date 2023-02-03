@@ -117,7 +117,24 @@ plot <- ggplot() +
       ymax  = upper,
       color = "Stratified"
     ),
-    key_glyph = "rect"
+    key_glyph = "rect",
+    fatten = .4
+  ) +
+  geom_errorbarh(
+    data = bootstrapData %>%
+      filter(method == "stratified") %>%
+      bind_cols(
+        tibble(value = stratified$data$estimate)
+      ),
+    size = .4,
+    inherit.aes = FALSE,
+    aes(
+      y = value, 
+      xmin = lowerRisk,
+      xmax = upperRisk, 
+      height = 0,
+      color = "Stratified"
+    )
   ) +
   stat_function(
     data = data.frame(
