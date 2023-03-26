@@ -59,6 +59,22 @@ figures/rmse_moderate_base.eps : code/PlotRmse.R\
 	data/processed/analysisIds.csv
 	$< moderate 4250 0.75 base 0 eps
 
+figures/rmse_moderate_base.svg : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.75 base 0 svg
+
+figures/rmse_moderate_base.pdf : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.75 base 0 pdf
+
 figures/rmse_moderate_base_sensitivity.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
 	code/helpers/PlotResult.R\
@@ -75,6 +91,14 @@ figures/rmse_moderate_sample_size.tiff : code/PlotRmse.R\
 	data/processed/analysisIds.csv
 	$< moderate 17000 0.75 sample_size 0 tiff
 
+figures/rmse_moderate_sample_size.pdf : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 17000 0.75 sample_size 0 pdf
+
 figures/rmse_moderate_sample_size.eps : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
 	code/helpers/PlotResult.R\
@@ -83,6 +107,14 @@ figures/rmse_moderate_sample_size.eps : code/PlotRmse.R\
 	data/processed/analysisIds.csv
 	$< moderate 17000 0.75 sample_size 0 eps
 
+figures/rmse_moderate_sample_size.svg : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 17000 0.75 sample_size 0 svg
+
 figures/rmse_moderate_sample_size_sensitivity.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
 	code/helpers/PlotResult.R\
@@ -90,6 +122,14 @@ figures/rmse_moderate_sample_size_sensitivity.tiff : code/PlotRmse.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
 	$< moderate 17000 0.75 sample_size 1 tiff
+
+figures/rmse_moderate_auc.pdf : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.85 auc 0 pdf
 
 figures/rmse_moderate_auc.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -106,6 +146,14 @@ figures/rmse_moderate_auc.eps : code/PlotRmse.R\
 	data/processed/rmse.csv\
 	data/processed/analysisIds.csv
 	$< moderate 4250 0.85 auc 0 eps
+
+figures/rmse_moderate_auc.svg : code/PlotRmse.R\
+	code/helpers/CreateManuscriptPlots.R\
+	code/helpers/PlotResult.R\
+	code/helpers/Absolute.R\
+	data/processed/rmse.csv\
+	data/processed/analysisIds.csv
+	$< moderate 4250 0.85 auc 0 svg
 
 figures/rmse_moderate_auc_sensitivity.tiff : code/PlotRmse.R\
 	code/helpers/CreateManuscriptPlots.R\
@@ -354,4 +402,6 @@ clean:
 	rm -rf data/raw/scenario_* data/processed/*.csv data/raw/gusto.rda figures/*.png figures/*.tiff; code/Clean.R
 sensitivity : $(EVALFILES_SENS)
 eps_figures:
-	make figures/rmse_moderate_base.eps; figures/rmse_moderate_sample_size.eps;	figures/rmse_moderate_auc.eps
+	make figures/rmse_moderate_base.eps && make figures/rmse_moderate_sample_size.eps && make figures/rmse_moderate_auc.eps
+svg_figures:
+	make figures/rmse_moderate_base.svg; figures/rmse_moderate_sample_size.svg;	figures/rmse_moderate_auc.svg

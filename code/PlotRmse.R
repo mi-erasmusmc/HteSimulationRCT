@@ -24,14 +24,25 @@ args_auc <- as.numeric(args[3])
 args_value <- as.character(args[4])
 args_sensitivity <- as.logical(as.numeric(args[5]))
 args_fileType <- as.character(args[6])
-print(args_sensitivity)
+message(paste0(rep("-", 80)))
+message(crayon::bold("SETTINGS"))
+message("")
+message(crayon::blue(paste0("args_base:        ", args_base)))
+message(crayon::blue(paste0("args_sampleSize:  ", args_sampleSize)))
+message(crayon::blue(paste0("args_auc:         ", args_auc)))
+message(crayon::blue(paste0("args_value:       ", args_value)))
+message(crayon::blue(paste0("args_sensitivity: ", args_sensitivity)))
+message(crayon::blue(paste0("args_fileType:    ", args_fileType)))
+message(paste0(rep("-", 80)))
 
-library(tidyverse)
-library(glue)
-library(ggtext)
-library(gridExtra)
-library(grid)
-library(ggside)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(glue)
+  library(ggtext)
+  library(gridExtra)
+  library(grid)
+  library(ggside)
+})
 
 # --------------------------------------
 # Sourcing helper files:
@@ -135,7 +146,7 @@ absolutePlots <- scenarioIds %>%
       type,
       ~ plotAbsoluteBenefit(
       data = .x,
-      projectDir = "~/Documents/Projects/arekkas_HteSimulation_XXXX_2021",
+      projectDir = ".",
       type = .y
       )
     )
@@ -163,15 +174,15 @@ gridList <- list(
   plotList[[1]] +
     theme(
       panel.grid.minor = element_blank(),
-      plot.title = element_markdown(size = 9),
-      axis.title.x = ggplot2::element_blank(),
+      plot.title = element_markdown(size = 10),
+      axis.text.x = element_text(size = 10),
+      axis.text.y = element_text(size = 10),
       axis.title.y = ggplot2::element_blank(),
-      axis.text.x = element_blank(),
-      axis.text.y = element_text(size = 8),
+      axis.title.x = ggplot2::element_blank(),
       legend.direction = "horizontal",
-      legend.title = element_text(size = 7.5),
-      legend.text = element_text(size = 7),
-      legend.position = c(.273, .87)
+      legend.title = element_text(size = 10),
+      legend.text = element_text(size = 10),
+      legend.position = c(.443, .79)
     ),
   absolutePlots$plot[[1]] +
     ggtitle("Simulated absolute benefit in treated patients") +
@@ -192,25 +203,25 @@ gridList <- list(
     theme_bw() +
     theme(
       panel.grid.minor = element_blank(),
-      axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.x = element_blank(),
-      axis.text.y = element_text(size = 8),
+      axis.title.x = ggplot2::element_blank(),
+      axis.text.y = element_text(size = 10),
+      axis.text.x = element_text(size = 10),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
       ggside.axis.ticks.length = unit(0, "pt"),
       ggside.panel.scale = .07,
-      plot.title = element_markdown(size = 9),
+      plot.title = element_markdown(size = 10),
       legend.position = "none"
     ),
   plotList[[2]] + 
     theme(
       panel.grid.minor = element_blank(),
-      plot.title = element_markdown(size = 9),
+      plot.title = element_markdown(size = 10),
       axis.title = element_blank(),
-      axis.text.x = element_blank(),
-      axis.text.y = element_text(size = 8),
+      axis.text.x = element_text(size = 10),
+      axis.text.y = element_text(size = 10),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
@@ -239,22 +250,23 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.x = element_blank(),
-      axis.text.y = element_text(size = 8),
+      axis.text.x = element_text(size = 10),
+      axis.text.y = element_text(size = 10),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
       ggside.axis.ticks.length = unit(0, "pt"),
       ggside.panel.scale = .07,
-      plot.title = element_markdown(size = 9, color = "white"),
+      plot.title = element_markdown(size = 10, color = "white"),
       legend.position = "none"
     ),
   plotList[[3]] +
     theme(
       panel.grid.minor = element_blank(),
-      plot.title = element_markdown(size = 9),
+      plot.title = element_markdown(size = 10),
       axis.title = element_blank(),
-      axis.text.x = element_blank(),
+      axis.text.y = element_text(size = 10),
+      axis.text.x = element_text(size = 10),
       legend.position = "none"
     ),
   absolutePlots$plot[[3]] +
@@ -278,27 +290,27 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      axis.text.y = element_text(size = 8),
-      axis.text.x = element_blank(),
+      axis.text.y = element_text(size = 10),
+      axis.text.x = element_text(size = 10),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
       ggside.axis.ticks.length = unit(0, "pt"),
       ggside.panel.scale = .07,
-      plot.title = element_markdown(size = 9, color = "white"),
+      plot.title = element_markdown(size = 10, color = "white"),
       legend.position = "none"
     ),
   plotList[[4]] +
     theme(
       panel.grid.minor = element_blank(),
+      plot.title = element_markdown(size = 10),
       axis.title = element_blank(),
-      axis.text.x = element_text(size = 8),
-      axis.text.y = element_text(size = 8),
-      legend.position = "none",
-      plot.title = element_markdown(size = 9)
+      axis.text.y = element_text(size = 10),
+      axis.text.x = element_text(size = 10),
+      legend.position = "none"
     ),
   absolutePlots$plot[[4]] +
-    ggtitle("Simulated absolute benefit in treatment arm") +
+    ggtitle("True absolute benefit in treatment arm") +
     xlim(c(0, .5)) +
     scale_y_continuous(
       position = "right",
@@ -317,15 +329,15 @@ gridList <- list(
     theme(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
-      axis.text.x = element_text(size = 8),
-      axis.text.y = element_text(size = 8),
       axis.title.y = element_blank(),
+      axis.text.y = element_text(size = 10),
+      axis.text.x = element_text(size = 10),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
       ggside.axis.ticks.length = unit(0, "pt"),
       ggside.panel.scale = .07,
-      plot.title = element_markdown(size = 9, color = "white"),
+      plot.title = element_markdown(size = 10, color = "white"),
       legend.position = "none"
     )
 )
@@ -351,24 +363,26 @@ left.grob <- grid::textGrob(
         ")"
       )
     ),
-    rot = 90
+    rot = 90,
+    gp = grid::gpar(fontsize = 12)
 )
 
 right.grob <- grid::textGrob(
     "Absolute benefit",
-    rot = 270
+    rot = 270,
+    gp = grid::gpar(fontsize = 12)
 )
 
 bottom.left.grob <- grid::textGrob(
   "Method",
   just = "center",
-  gp = gpar(fontsize = 10)
+  gp = gpar(fontsize = 12)
 )
 
 bottom.right.grob <- grid::textGrob(
   "Baseline risk",
   just = "center",
-  gp = gpar(fontsize = 10)
+    gp = grid::gpar(fontsize = 12)
 )
 
 bottom.grob <- grid.arrange(
@@ -400,16 +414,24 @@ if (args_fileType == "tiff") {
     file.path("figures", fileName), 
     plot = res,
     dpi = 1200,
-    width = 10, 
-    height = 8,
+    width = 8, 
+    height = 6.8,
     compression = "lzw"
   )
-} else if (args_fileType == "eps") {
+} else if (args_fileType %in% c("eps", "svg")) {
   ggplot2::ggsave(
     file.path("figures", fileName), 
     plot = res,
-    width = 10, 
-    height = 8
+    width = 8, 
+    height = 6.8
+  )
+} else if (args_fileType == "pdf") {
+  ggplot2::ggsave(
+    file.path("figures", fileName), 
+    plot = res,
+    dpi = 1200,
+    width = 8, 
+    height = 6.8
   )
 }
 
