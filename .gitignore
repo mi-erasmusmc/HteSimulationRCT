@@ -25,4 +25,5 @@ renv/staging
 *.tex
 *.spl
 *.docx
-
+*.eps
+*.svg

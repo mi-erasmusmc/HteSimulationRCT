@@ -22,6 +22,9 @@ args_base <- as.character(args[1])
 args_sampleSize <- as.numeric(args[2])
 args_auc <- as.numeric(args[3])
 args_value <- as.character(args[4])
+args_sensitivity <- as.logical(as.numeric(args[5]))
+args_fileType <- as.character(args[6])
+print(args_sensitivity)
 
 library(tidyverse)
 library(glue)
@@ -40,13 +43,30 @@ source("code/helpers/CreateManuscriptPlots.R")
 source("code/helpers/PlotResult.R")
 source("code/helpers/Absolute.R")
 
-scenarioIds <- readr::read_csv("data/processed/analysisIds.csv") %>%
+if (!args_sensitivity) {
+  scenarioIds <- readr::read_csv("data/processed/analysisIds.csv")
+} else {
+  scenarioIds <- readr::read_csv("data/processed/analysisIdsSensitivity.csv")
+}
+scenarioIds <- scenarioIds %>%
   filter(
     base == args_base,
     !(type %in% c("quadratic-moderate", "linear-moderate")),
     sampleSize == args_sampleSize,
     auc == args_auc
   ) 
+# scenarioIds <- readr::read_csv("data/processed/analysisIds.csv") %>%
+#   filter(
+#     base == args_base,
+#     !(type %in% c("quadratic-moderate", "linear-moderate")),
+#     sampleSize == args_sampleSize,
+#     auc == args_auc
+#   ) 
+
+# if (args_sensitivity) {
+#   scenarioIds <- scenarioIds |> 
+#     mutate(scenario = scenario + 676)
+# }
 
 metric    <- "rmse"
 
@@ -146,13 +166,12 @@ gridList <- list(
       plot.title = element_markdown(size = 9),
       axis.title.x = ggplot2::element_blank(),
       axis.title.y = ggplot2::element_blank(),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       axis.text.y = element_text(size = 8),
       legend.direction = "horizontal",
       legend.title = element_text(size = 7.5),
       legend.text = element_text(size = 7),
-      legend.position = c(.273, .848)
+      legend.position = c(.273, .87)
     ),
   absolutePlots$plot[[1]] +
     ggtitle("Simulated absolute benefit in treated patients") +
@@ -175,8 +194,7 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -191,8 +209,7 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       plot.title = element_markdown(size = 9),
       axis.title = element_blank(),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -222,8 +239,7 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       axis.text.y = element_text(size = 8),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
@@ -238,8 +254,7 @@ gridList <- list(
       panel.grid.minor = element_blank(),
       plot.title = element_markdown(size = 9),
       axis.title = element_blank(),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       legend.position = "none"
     ),
   absolutePlots$plot[[3]] +
@@ -264,8 +279,7 @@ gridList <- list(
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
       axis.text.y = element_text(size = 8),
-      # axis.text.x = element_blank(),
-      axis.text.x = element_text(size = 8),
+      axis.text.x = element_blank(),
       ggside.line = element_blank(),
       ggside.rect = element_blank(),
       ggside.axis.text = element_blank(),
@@ -278,7 +292,6 @@ gridList <- list(
     theme(
       panel.grid.minor = element_blank(),
       axis.title = element_blank(),
-      # axis.text.x = element_text(size = 8),
       axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8),
       legend.position = "none",
@@ -373,9 +386,16 @@ fileName <- paste0(
     args_base,
     args_value,
     sep = "_"
-  ),
-  ".tiff"
+  )
 )
+
+if (args_sensitivity) {
+  fileName <- paste(fileName, "sensitivity", sep = "_")
+}
+
+fileName <- paste0(fileName, ".", args_fileType)
+
+if (args_fileType == "tiff") {
   ggplot2::ggsave(
     file.path("figures", fileName), 
     plot = res,
@@ -384,4 +404,12 @@ fileName <- paste0(
     height = 8,
     compression = "lzw"
   )
-  
+} else if (args_fileType == "eps") {
+  ggplot2::ggsave(
+    file.path("figures", fileName), 
+    plot = res,
+    width = 10, 
+    height = 8
+  )
+}
+
